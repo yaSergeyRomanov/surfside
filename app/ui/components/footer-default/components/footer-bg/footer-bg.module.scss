@@ -1,0 +1,150 @@
+@use "@/ui/styles/functions" as *;
+@use "@/ui/styles/mixins" as *;
+@use "@/ui/styles/settings" as *;
+
+.wrapper {
+  width: 100%;
+  height: calc(100vh - 100px);
+  display: flex;
+  flex-direction: column;
+  position: fixed;
+  bottom: 0;
+  left: 0;
+}
+
+.image {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+
+  &::after {
+    content: "";
+    display: block;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(
+      to top,
+      fade(var(--gray-color), 0.3),
+      fade(var(--gray-color), 0)
+    );
+    position: absolute;
+    top: 0;
+    left: 0;
+    z-index: 1;
+  }
+
+  img {
+    display: block;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+  }
+}
+
+.bottom {
+  margin-top: auto;
+}
+
+.row {
+  padding-bottom: 47px;
+  display: flex;
+  justify-content: space-between;
+  position: relative;
+  z-index: 1;
+}
+
+.nav {
+  margin-top: 6px;
+  width: 280px;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.navLink {
+  display: block;
+  font-family: var(--font-pragmatica);
+  font-weight: 200;
+  font-size: 14px;
+  line-height: 1.1;
+  color: var(--bg-primary);
+  opacity: 0.7;
+  transition: $transition-fast;
+
+  @media (hover: hover) {
+    &:hover {
+      opacity: 1;
+    }
+  }
+
+  &:active {
+    opacity: 0.2;
+  }
+}
+
+.logo {
+  margin-bottom: 30px;
+  display: block;
+  width: 461px;
+  height: auto;
+}
+
+.langLinks {
+  display: flex;
+  justify-content: center;
+  gap: 20px;
+  transition: $transition-fast;
+}
+
+.lang {
+  font-size: 20px;
+  letter-spacing: 0.02em;
+  text-transform: uppercase;
+  color: var(--text-secondary-3);
+  opacity: 0.6;
+  border-bottom: 1px solid transparent;
+  transition: $transition-fast;
+
+  @media (hover: hover) {
+    &:hover {
+      opacity: 1;
+    }
+  }
+
+  &.isActive {
+    opacity: 1;
+    border-bottom-color: var(--bg-primary);
+  }
+}
+
+.social {
+  margin-top: 10px;
+  width: 280px;
+  display: flex;
+  justify-content: flex-end;
+  gap: 20px;
+}
+
+.socialLink {
+  display: block;
+  font-size: 0;
+  transition: $transition-fast;
+
+  @media (hover: hover) {
+    &:hover {
+      opacity: 0.7;
+    }
+  }
+
+  &:active {
+    opacity: 0.2;
+  }
+
+  img {
+    display: block;
+    width: 30px;
+    height: 30px;
+  }
+}

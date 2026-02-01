@@ -1,0 +1,67 @@
+@use "@/ui/styles/functions" as *;
+@use "@/ui/styles/mixins" as *;
+@use "@/ui/styles/settings" as *;
+
+.section {
+  padding: 150px 0;
+}
+
+.grid {
+  display: grid;
+  grid-template-columns: auto auto;
+  grid-template-rows: auto auto;
+  gap: 60px;
+}
+
+.col {
+  position: relative;
+
+  &:nth-child(1) {
+    grid-row: span 2;
+
+    .text {
+      top: 2%;
+      left: 53%;
+    }
+  }
+
+  &:nth-child(2) {
+    .text {
+      bottom: 5%;
+      left: 66%;
+    }
+  }
+
+  &:nth-child(3) {
+    .text {
+      top: 4%;
+      left: 1%;
+    }
+  }
+}
+
+.text {
+  position: absolute;
+}
+
+.image {
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.title {
+  margin: 0 0 10px;
+  font-family: var(--font-pragmatica);
+  font-weight: 400;
+  font-size: 36px;
+  line-height: 1;
+}
+
+.description {
+  display: block;
+  font-family: var(--font-pragmatica);
+  font-weight: 400;
+  font-size: 18px;
+}

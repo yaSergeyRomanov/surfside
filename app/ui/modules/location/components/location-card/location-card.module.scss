@@ -1,0 +1,80 @@
+@use "@/ui/styles/functions" as *;
+@use "@/ui/styles/mixins" as *;
+@use "@/ui/styles/settings" as *;
+
+.card {
+  width: 400px;
+  background: var(--bg-secondary-4);
+  position: fixed;
+  top: 50%;
+  left: 50px;
+  transform: translateY(-50%);
+  z-index: 10;
+}
+
+.slider {
+  aspect-ratio: 400/249;
+
+  :global(.swiper-pagination-bullets) {
+    display: flex;
+    justify-content: center;
+    gap: 10px;
+    bottom: 20px;
+    left: 0;
+  }
+
+  :global(.swiper-pagination-bullet) {
+    margin: 0 !important;
+    background: var(--bg-primary);
+  }
+}
+
+.image {
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.text {
+  padding: 40px 30px;
+}
+
+.title {
+  margin: 0 0 15px;
+  font-family: var(--font-pragmatica);
+  font-weight: 400;
+  font-size: 20px;
+  color: var(--text-primary-2);
+  letter-spacing: -0.02em;
+  color: var(--text-primary-2);
+}
+
+.route {
+  margin-bottom: 25px;
+  display: flex;
+  align-items: flex-end;
+  gap: 10px;
+  font-size: 12px;
+  color: fade(var(--text-primary), 0.8);
+  line-height: 1;
+
+  img {
+    width: 14px;
+    height: auto;
+  }
+}
+
+.description {
+  font-size: 16px;
+  line-height: 1.2;
+  color: var(--text-primary-2);
+
+  p {
+    margin: 0;
+
+    &:not(:last-child) {
+      margin-bottom: 20px;
+    }
+  }
+}

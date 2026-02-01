@@ -1,0 +1,25 @@
+.title {
+  margin: 0;
+  display: block;
+  font-family: var(--font-pragmatica);
+  font-weight: 400;
+
+  span {
+    font-weight: 200;
+  }
+}
+
+.title-size-XXL {
+  font-size: 46px;
+  line-height: 1;
+}
+
+.title-size-XL {
+  font-size: 32px;
+  line-height: 1;
+}
+
+.title-size-L {
+  font-size: 28px;
+  line-height: 1;
+}

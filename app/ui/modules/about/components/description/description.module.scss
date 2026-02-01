@@ -1,0 +1,42 @@
+@use "@/ui/styles/functions" as *;
+@use "@/ui/styles/mixins" as *;
+@use "@/ui/styles/settings" as *;
+
+.section {
+  position: relative;
+}
+
+.image {
+  display: block;
+  width: 100%;
+  height: auto;
+}
+
+.inner {
+  width: 100%;
+  max-width: 1240px;
+  position: absolute;
+  top: 200px;
+  left: 50%;
+  transform: translateX(-50%);
+}
+
+.title {
+  margin: 0 0 100px;
+  width: 100%;
+  max-width: 717px;
+  font-family: var(--font-pragmatica);
+  font-weight: 400;
+  font-size: 40px;
+  line-height: 1.1;
+  text-align: right;
+}
+
+.text {
+  margin-left: auto;
+  width: 100%;
+  max-width: 640px;
+  display: flex;
+  flex-direction: column;
+  gap: 30px;
+}

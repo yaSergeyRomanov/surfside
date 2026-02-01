@@ -1,0 +1,69 @@
+@use "@/ui/styles/mixins" as *;
+@use "@/ui/styles/settings" as *;
+
+.button {
+  padding: 17px 26px 15px;
+  font-family: var(--font-pragmatica);
+  font-weight: 400;
+  font-size: 16px;
+  line-height: 100%;
+  text-align: center;
+  text-transform: uppercase;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 20px;
+  width: max-content;
+  box-shadow: none;
+  border: 2px solid;
+  border-radius: 0;
+  cursor: pointer;
+  transition: $transition-fast;
+
+  svg {
+    width: 13px;
+    height: 13px;
+    transition: $transition-fast;
+  }
+
+  span {
+    transition: 0.3s ease-out;
+  }
+
+  &:active {
+    span,
+    svg {
+      opacity: 0.3;
+    }
+  }
+}
+
+.button-primary {
+  background-color: var(--text-primary);
+  border-color: var(--text-primary);
+  color: var(--bg-primary);
+}
+
+.button-accent {
+  background-color: var(--accent-color);
+  border-color: var(--accent-color);
+  color: var(--text-primary);
+}
+
+.button-accent-2 {
+  background-color: var(--accent-color-2);
+  border-color: var(--accent-color-2);
+  color: var(--text-primary);
+}
+
+.button-white-borders {
+  background-color: none;
+  border-color: var(--bg-primary);
+  color: var(--bg-primary);
+}
+
+.button-white {
+  background-color: var(--bg-primary);
+  border-color: var(--bg-primary);
+  color: var(--text-primary);
+}

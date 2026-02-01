@@ -1,0 +1,39 @@
+@use "@/ui/styles/mixins" as *;
+@use "@/ui/styles/settings" as *;
+
+.section {
+  padding: 136px 0 200px;
+  background: var(--bg-secondary-2);
+  position: relative;
+  overflow: hidden;
+
+  .title {
+    margin-bottom: 30px;
+  }
+}
+
+.location {
+  width: 100%;
+  max-width: 610px;
+  position: relative;
+  z-index: 1;
+}
+
+.text {
+  margin-bottom: 32px;
+
+  p {
+    &:not(:last-child) {
+      margin-bottom: 20px;
+    }
+  }
+}
+
+.mapImage {
+  display: block;
+  width: 806px;
+  height: 635px;
+  position: absolute;
+  top: 0;
+  right: 0;
+}

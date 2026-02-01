@@ -1,0 +1,59 @@
+@use "@/ui/styles/functions" as *;
+@use "@/ui/styles/mixins" as *;
+@use "@/ui/styles/settings" as *;
+
+.projects {
+  height: 100vh;
+}
+
+.slider {
+  height: 100%;
+
+  :global(.swiper-button-prev),
+  :global(.swiper-button-next) {
+    width: 55px;
+    height: 55px;
+    background: var(--bg-primary);
+    border: 1px solid fade(var(--text-primary-2), 0.1);
+    border-radius: 50%;
+    color: var(--text-primary);
+    top: calc(50% + 102px);
+    transform: translateY(-50%);
+    transition: $transition-fast;
+
+    @media (hover: hover) {
+      &:hover {
+        background: var(--accent-color);
+        border-color: var(--accent-color);
+        color: var(--bg-primary);
+      }
+    }
+
+    svg {
+      width: 12px;
+      height: 12px;
+    }
+  }
+
+  :global(.swiper-button-prev) {
+    left: 27px;
+  }
+
+  :global(.swiper-button-next) {
+    right: 27px;
+  }
+
+  :global(.swiper-button-disabled) {
+    opacity: 0;
+    pointer-events: none;
+  }
+}
+
+.slide {
+  padding: 150px 50px 50px;
+  height: auto !important;
+
+  &:not(:last-child) {
+    border-right: 1px solid fade(var(--text-primary-2), 0.1);
+  }
+}

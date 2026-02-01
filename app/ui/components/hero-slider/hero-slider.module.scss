@@ -1,0 +1,22 @@
+@use "@/ui/styles/mixins" as *;
+@use "@/ui/styles/settings" as *;
+
+.slider {
+  width: calc(50% + 1px);
+  height: 100vh;
+  position: absolute !important;
+  top: 0;
+  right: 0;
+  pointer-events: none;
+}
+
+.slide {
+  pointer-events: none;
+
+  img {
+    display: block;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+  }
+}

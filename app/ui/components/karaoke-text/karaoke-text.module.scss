@@ -1,0 +1,60 @@
+@use "@/ui/styles/functions" as *;
+@use "@/ui/styles/mixins" as *;
+@use "@/ui/styles/settings" as *;
+
+.section {
+  margin: 0;
+  height: 100vh;
+  background: var(--text-primary);
+  overflow: hidden;
+  position: relative;
+}
+
+.decor {
+  width: 679px;
+  height: auto;
+  position: absolute;
+  bottom: 0;
+  left: -108px;
+}
+
+.wrapper {
+  margin: auto;
+  position: relative;
+  z-index: 1;
+}
+
+.text {
+  display: block;
+  width: 100%;
+  max-width: 882px;
+  font-family: var(--font-pragmatica);
+  font-weight: 400;
+  font-size: 32px;
+  line-height: 42px;
+  color: fade(var(--bg-primary), 0.27);
+  text-align: center;
+  contain: layout style paint;
+  backface-visibility: hidden;
+
+  :global(.line) {
+    display: block;
+    position: relative;
+  }
+
+  :global(.text-mask) {
+    background: linear-gradient(
+      90deg,
+      var(--bg-primary) 50%,
+      fade(var(--bg-primary), 0.27) 50%
+    );
+    background-size: 200% 100%;
+    background-position: 100% 0;
+    -webkit-background-clip: text;
+    background-clip: text;
+    -webkit-text-fill-color: transparent;
+    display: inline-block;
+    transform: translateZ(0);
+    will-change: background-position;
+  }
+}

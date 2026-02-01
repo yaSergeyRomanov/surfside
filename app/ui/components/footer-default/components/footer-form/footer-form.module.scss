@@ -1,0 +1,230 @@
+@use "@/ui/styles/functions" as *;
+@use "@/ui/styles/mixins" as *;
+@use "@/ui/styles/settings" as *;
+
+.inputWrapper {
+  margin-bottom: 35px;
+}
+
+.input {
+  padding: 22px 30px 22px;
+  display: block;
+  width: 100%;
+  background: var(--bg-inputs);
+  border: 3px solid var(--bg-inputs);
+  font: inherit;
+  font-size: 26px;
+  line-height: 1;
+  color: var(--text-primary-3);
+  letter-spacing: 0.02em;
+  transition: $transition-fast;
+
+  @media (hover: hover) {
+    &:hover {
+      background: var(--bg-inputs-2);
+      border-color: var(--bg-inputs-2);
+    }
+  }
+
+  &:focus {
+    border-color: var(--accent-color-2);
+  }
+
+  &.error {
+    border-color: var(--error-color);
+  }
+
+  &::placeholder {
+    font: inherit;
+    font-size: 26px;
+    color: var(--text-inputs);
+    line-height: 1;
+  }
+}
+
+.errorMessage {
+  margin-top: 10px;
+  display: block;
+  font-size: 16px;
+  color: var(--error-color);
+}
+
+.submitButton {
+  padding-top: 24px;
+  padding-bottom: 25px;
+  width: 100%;
+  font-size: 28px;
+  color: var(--bg-primary);
+  text-transform: initial;
+  letter-spacing: 0;
+}
+
+.social {
+  margin: 40px 0;
+}
+
+.socialTitle {
+  margin-bottom: 30px;
+  font-weight: 400;
+  font-size: 26px;
+  line-height: 1.2;
+  letter-spacing: 0.02em;
+  color: var(--bg-primary);
+}
+
+.socialWrapper {
+  display: flex;
+  flex-direction: column;
+  gap: 30px;
+}
+
+.socialLabel {
+  min-height: 20px;
+  width: max-content;
+  font-size: 20px;
+  line-height: 1;
+  color: var(--bg-primary);
+  user-select: none;
+  cursor: pointer;
+  display: block;
+  position: relative;
+}
+
+.socialText {
+  padding-left: 36px;
+  display: block;
+  position: relative;
+
+  @at-root input:disabled ~ & {
+    cursor: not-allowed;
+  }
+
+  &:before {
+    content: "";
+    width: 20px;
+    height: 20px;
+    border: 2px solid var(--accent-color-2);
+    border-radius: 50%;
+    position: absolute;
+    top: -2px;
+    left: 0;
+  }
+
+  @at-root input:disabled ~ &:before {
+    border-color: gray;
+  }
+
+  &:after {
+    content: "";
+    width: 15px;
+    height: 15px;
+    background: var(--accent-color-2);
+    border-radius: 50%;
+    position: absolute;
+    top: 2px;
+    left: 4px;
+    opacity: 0;
+    transition: $transition-fast;
+
+    @at-root input:checked ~ & {
+      opacity: 1;
+    }
+
+    @at-root input:checked:disabled ~ & {
+      border-color: gray;
+    }
+  }
+}
+
+.socialInput {
+  position: absolute;
+  left: 0;
+  margin: 0;
+  padding: 0;
+  opacity: 0;
+  transform: translateY(-50%);
+}
+
+.agree {
+  margin: 48px 0;
+  position: relative;
+
+  &.error {
+    .agreeText {
+      &::before {
+        border-color: var(--error-color);
+      }
+    }
+  }
+
+  a {
+    padding-bottom: 3px;
+    text-decoration: none;
+    color: var(--accent-color-2);
+    border-bottom: 1px solid var(--accent-color-2);
+  }
+}
+
+.agreeLabel {
+  min-height: 20px;
+  font-size: 18px;
+  line-height: 1;
+  color: var(--bg-primary);
+  user-select: none;
+  cursor: pointer;
+  display: inline-block;
+  position: relative;
+}
+
+.agreeText {
+  padding-left: 35px;
+  display: block;
+  position: relative;
+
+  @at-root input:disabled ~ & {
+    cursor: not-allowed;
+  }
+
+  &:before {
+    content: "";
+    width: 20px;
+    height: 20px;
+    border: 2px solid var(--accent-color-2);
+    position: absolute;
+    top: -3px;
+    left: 0;
+  }
+
+  @at-root input:disabled ~ &:before {
+    border-color: gray;
+  }
+
+  &:after {
+    content: "";
+    width: 15px;
+    height: 15px;
+    background: var(--accent-color-2);
+    position: absolute;
+    top: 1px;
+    left: 4px;
+    opacity: 0;
+    transition: $transition-fast;
+
+    @at-root input:checked ~ & {
+      opacity: 1;
+    }
+
+    @at-root input:checked:disabled ~ & {
+      border-color: gray;
+    }
+  }
+}
+
+.agreeInput {
+  position: absolute;
+  left: 0;
+  margin: 0;
+  padding: 0;
+  opacity: 0;
+  transform: translateY(-50%);
+}

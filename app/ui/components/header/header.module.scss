@@ -1,0 +1,70 @@
+@use "@/ui/styles/functions" as *;
+@use "@/ui/styles/mixins" as *;
+@use "@/ui/styles/settings" as *;
+
+.header {
+  &.isLiftUp {
+    .wrapper {
+      transform: translateY(-110px);
+    }
+  }
+
+  &.isColored {
+    .wrapper {
+      background: var(--text-primary);
+      border-color: fade(var(--bg-primary), 0.1);
+    }
+
+    .button {
+      background: var(--bg-primary);
+      border-color: var(--bg-primary);
+      color: var(--text-primary);
+    }
+  }
+
+  &.isColoredWhite {
+    .wrapper {
+      background: var(--bg-primary);
+      border-color: fade(var(--text-primary-2), 0.1);
+    }
+  }
+
+  .button {
+    padding: 13px 21px 12px;
+    border-radius: 5px;
+    font-size: 12px;
+  }
+}
+
+.wrapper {
+  padding: 30px 0;
+  width: 100%;
+  border-bottom: 1px solid transparent;
+  position: fixed;
+  top: 0;
+  left: 0;
+  z-index: 99;
+  transition: $transition-fast;
+}
+
+.row {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.col {
+  display: flex;
+  align-items: center;
+  gap: 60px;
+}
+
+.logo {
+  display: block;
+
+  img {
+    display: block;
+    width: 200px;
+    height: auto;
+  }
+}

@@ -1,0 +1,11 @@
+.section {
+  position: relative;
+
+  &.isHasNotOffsets {
+    margin: 0;
+  }
+
+  &.isHigh {
+    height: 100vh;
+  }
+}

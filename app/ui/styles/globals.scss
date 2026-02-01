@@ -1,0 +1,104 @@
+@use "./mixins/" as *;
+@use "./settings/" as *;
+
+:root {
+  --device-size: 1600;
+
+  --bg-primary: #fff;
+  --bg-inputs: #f9fafb;
+  --bg-inputs-2: #dedfe0;
+  --bg-inputs-3: #f5f5f5;
+  --text-inputs: #aca8a8;
+  --bg-secondary-2: #edf1f4;
+  --bg-secondary-3: #c2d1de;
+  --bg-secondary-4: #f8f8f8;
+  --text-primary: #0f3239;
+  --text-primary-2: #000000;
+  --text-primary-3: #07171a;
+  --text-secondary: #d9d9d9;
+  --text-secondary-2: #b7babc;
+  --text-secondary-3: #d8d8d8;
+  --accent-color: #48959c;
+  --accent-color-2: #7bbcb9;
+  --accent-color-3: #cbdedd;
+  --error-color: #ff1111;
+  --gray-color: #2f353b;
+}
+
+html,
+body {
+  max-width: 100vw;
+  height: 100%;
+  @include reset-scrollbar;
+  scroll-behavior: smooth;
+}
+
+body {
+  position: relative;
+  font-size: 20px;
+  font-family: var(--font-golos);
+  font-weight: 400;
+  line-height: 1.2;
+  -webkit-font-smoothing: antialiased;
+  background: var(--bg-primary);
+  color: var(--text-primary);
+}
+
+* {
+  box-sizing: border-box;
+  padding: 0;
+  margin: 0;
+}
+
+ul,
+ol,
+li {
+  padding: 0;
+  margin: 0;
+  list-style: none;
+}
+
+a {
+  color: inherit;
+  text-decoration: none;
+}
+
+img {
+  display: block;
+  max-width: 100%;
+}
+
+button,
+input {
+  &:focus {
+    outline: none;
+  }
+}
+
+input[type="text"],
+input[type="password"],
+input[type="tel"],
+input[type="email"],
+input[type="number"],
+textarea,
+button {
+  -webkit-appearance: none;
+}
+
+input::-webkit-credentials-auto-fill-button,
+input::-webkit-contacts-auto-fill-button {
+  visibility: hidden;
+  pointer-events: none;
+  position: absolute;
+  right: 0;
+}
+
+input::-ms-reveal,
+input::-ms-clear {
+  width: 0;
+  height: 0;
+}
+
+fieldset {
+  border: none;
+}

@@ -1,0 +1,10 @@
+@use "@/ui/styles/mixins" as *;
+@use "@/ui/styles/settings" as *;
+
+.picture {
+  & img {
+    display: block;
+    width: 100%;
+    height: 100%;
+  }
+}

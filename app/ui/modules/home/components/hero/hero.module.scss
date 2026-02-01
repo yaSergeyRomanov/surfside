@@ -1,0 +1,25 @@
+@use "@/ui/styles/mixins" as *;
+@use "@/ui/styles/settings" as *;
+
+.section {
+  height: 100vh;
+  background: var(--text-primary);
+  color: var(--bg-primary);
+
+  .title {
+    margin: 0 0 30px;
+  }
+}
+
+.wrapper {
+  margin: auto 0;
+}
+
+.subtitle {
+  margin: 0 0 34px;
+}
+
+.buttons {
+  display: flex;
+  gap: 20px;
+}

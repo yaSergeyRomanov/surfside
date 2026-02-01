@@ -1,0 +1,43 @@
+@use "@/ui/styles/functions" as *;
+@use "@/ui/styles/mixins" as *;
+@use "@/ui/styles/settings" as *;
+
+.list {
+  margin-top: auto;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 20px;
+}
+
+.social {
+  padding: 20px;
+  display: flex;
+  flex-direction: column;
+  gap: 44px;
+  background: var(--text-secondary);
+  color: var(--text-primary);
+
+  &.accentBg {
+    background: var(--accent-color);
+    color: var(--bg-primary);
+  }
+}
+
+.item {
+  width: calc(50% - 10px);
+}
+
+.title {
+  display: block;
+  font-size: 26px;
+  line-height: 1;
+  letter-spacing: 0.02em;
+}
+
+.contact {
+  display: block;
+  font-size: 20px;
+  letter-spacing: 0.02em;
+  opacity: 0.4;
+  line-height: 1;
+}
