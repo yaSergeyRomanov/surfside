@@ -37,13 +37,13 @@ export const Hero = ({
   title,
   text,
   buttonFirstLabel,
-  buttonSecondLabel,
+  buttonSecond,
 }: HeroProps) => {
   const [isShowPopup, setIsShowPopup] = useState(false);
 
   return (
     <Section className={styles.section} Tag="section" isHasNotOffsets isHigh>
-      <Container isHigh>
+      <Container className={styles.container} isHigh>
         <div className={styles.wrapper}>
           <AnimFadeUp>
             <Title
@@ -79,8 +79,8 @@ export const Hero = ({
                 <PopupForm onClose={() => setIsShowPopup(false)} />
               </Popup>
 
-              <Button theme="white-borders" as="Link" href="/projects/">
-                <span>{buttonSecondLabel}</span>
+              <Button theme="white-borders" as="a" href={buttonSecond.url}>
+                <span>{buttonSecond.title}</span>
               </Button>
             </div>
           </AnimFadeUp>

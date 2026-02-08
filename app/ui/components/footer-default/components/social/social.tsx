@@ -10,7 +10,7 @@ export const Social = () => {
       <li className={styles.item}>
         <a
           className={clsx(styles.social, styles.accentBg)}
-          href=""
+          href="https://wa.me/6282235372593/"
           target="_blank"
         >
           <AnimFadeUp>
@@ -22,7 +22,11 @@ export const Social = () => {
         </a>
       </li>
       <li className={styles.item}>
-        <a className={clsx(styles.social)} href="" target="_blank">
+        <a
+          className={clsx(styles.social)}
+          href="https://t.me/surfsidebali/"
+          target="_blank"
+        >
           <AnimFadeUp>
             <span className={styles.title}>Telegram</span>
           </AnimFadeUp>
@@ -32,7 +36,11 @@ export const Social = () => {
         </a>
       </li>
       <li className={styles.item}>
-        <a className={clsx(styles.social)} href="" target="_blank">
+        <a
+          className={clsx(styles.social)}
+          href="https://www.youtube.com/@SurfsideProjectBali/"
+          target="_blank"
+        >
           <AnimFadeUp>
             <span className={styles.title}>Youtube</span>
           </AnimFadeUp>
@@ -44,7 +52,7 @@ export const Social = () => {
       <li className={styles.item}>
         <a
           className={clsx(styles.social, styles.accentBg)}
-          href=""
+          href="https://www.instagram.com/surfside_bali/"
           target="_blank"
         >
           <AnimFadeUp>

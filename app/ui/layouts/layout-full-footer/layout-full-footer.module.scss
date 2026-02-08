@@ -1,3 +1,7 @@
+@use "@/ui/styles/functions" as *;
+@use "@/ui/styles/mixins" as *;
+@use "@/ui/styles/settings" as *;
+
 .main {
   display: flex;
   flex-direction: column;
@@ -10,4 +14,8 @@
   background: var(--bg-primary);
   position: relative;
   z-index: 1;
+
+  @include mobile {
+    margin-bottom: calc(100vh - 62px);
+  }
 }

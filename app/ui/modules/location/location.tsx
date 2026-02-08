@@ -2,26 +2,36 @@
 
 import { useEffect } from "react";
 
-import { useHeader } from "@/context/headerContext";
+import { LocationResponse } from "@/api/location/types";
+import { useAppStore } from "@/store/useAppStore";
+import { Title } from "@/ui/components/title";
 
 import { Map } from "./components/map";
 
-export const LocationModule = () => {
-  const { updateHeader } = useHeader();
+import styles from "./location.module.scss";
+
+export const LocationModule = ({
+  pageTitle,
+  instructionLabel,
+  locations,
+}: LocationResponse) => {
+  const updateHeader = useAppStore((state) => state.updateHeader);
 
   useEffect(() => {
     updateHeader({
       theme: "white",
-      isColoredWhite: false,
+      isColoredBlue: true,
     });
+  }, [updateHeader]);
 
-    return () => {
-      updateHeader({
-        theme: "white",
-        isColoredWhite: false,
-      });
-    };
-  }, []);
-
-  return <Map />;
+  return (
+    <div className={styles.wrapper}>
+      <Title className={styles.title} size="XXL" text={pageTitle} Tag={"h1"} />
+      <div className={styles.instruction}>
+        <span dangerouslySetInnerHTML={{ __html: instructionLabel }} />
+        <img src="/images/map-navigation.svg" alt="Navigation map" />
+      </div>
+      <Map locations={locations} />
+    </div>
+  );
 };

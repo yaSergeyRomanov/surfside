@@ -4,6 +4,14 @@
 
 .section {
   padding: 150px 0;
+
+  @include tablet {
+    padding: 100px 0;
+  }
+
+  @include mobile {
+    padding: 60px 0;
+  }
 }
 
 .grid {
@@ -11,6 +19,16 @@
   grid-template-columns: auto auto;
   grid-template-rows: auto auto;
   gap: 60px;
+
+  @include tablet {
+    display: flex;
+    flex-direction: column;
+    gap: 50px;
+  }
+
+  @include mobile {
+    gap: 20px;
+  }
 }
 
 .col {
@@ -38,6 +56,60 @@
       left: 1%;
     }
   }
+
+  @include mobile {
+    &:nth-child(1) {
+      .text {
+        top: calc(50% + 20px);
+        left: 47%;
+        transform: translateY(-50%);
+      }
+
+      .description {
+        width: 154px;
+      }
+    }
+
+    &:nth-child(2) {
+      .text {
+        left: 47%;
+        bottom: 2%;
+      }
+
+      .description {
+        width: 135px;
+      }
+    }
+
+    &:nth-child(3) {
+      .text {
+        top: 0;
+      }
+
+      .description {
+        width: 143px;
+      }
+    }
+  }
+
+  @media (min-width: 430px) and (max-width: 767px) {
+    &:nth-child(1) {
+      .text {
+        top: calc(50% + 30px);
+      }
+    }
+
+    &:nth-child(3) {
+      .text {
+        top: 9%;
+        left: 4%;
+      }
+
+      .description {
+        width: 215px;
+      }
+    }
+  }
 }
 
 .text {
@@ -57,6 +129,11 @@
   font-weight: 400;
   font-size: 36px;
   line-height: 1;
+
+  @include mobile {
+    margin-bottom: 2px;
+    font-size: 26px;
+  }
 }
 
 .description {
@@ -64,4 +141,12 @@
   font-family: var(--font-pragmatica);
   font-weight: 400;
   font-size: 18px;
+
+  @include mobile {
+    font-size: 12px;
+
+    br {
+      display: none;
+    }
+  }
 }

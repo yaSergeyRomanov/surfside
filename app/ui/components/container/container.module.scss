@@ -1,8 +1,19 @@
+@use "@/ui/styles/functions" as *;
+@use "@/ui/styles/mixins" as *;
+@use "@/ui/styles/settings" as *;
+
 .container {
   padding: 0 50px;
   margin: 0 auto;
   width: 100%;
-  // max-width: 1440px;
+
+  @include tablet {
+    padding: 0 30px;
+  }
+
+  @include mobile {
+    padding: 0 16px;
+  }
 }
 
 .high {

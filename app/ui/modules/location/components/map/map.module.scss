@@ -6,10 +6,24 @@
   width: 100%;
   overflow: hidden;
   height: 100vh;
+
+  @include tablet {
+    min-height: calc(100vh - 208px);
+    height: 870px;
+  }
+
+  @include mobile {
+    min-height: calc(100vh - 188px);
+    height: 600px;
+  }
 }
 
 .map {
   height: calc(100vh + 100px);
+
+  @include tablet {
+    height: calc(100% + 40px);
+  }
 }
 
 .markerWrapper {
@@ -32,15 +46,22 @@
     opacity: 1;
 
     .pin {
-      width: 46px;
-      height: 46px;
+      width: 44px;
+      height: 44px;
+    }
+  }
+
+  @include mobile {
+    .pin {
+      width: 28px;
+      height: 28px;
     }
   }
 }
 
 .pin {
-  width: 40px;
-  height: 40px;
+  width: 38px;
+  height: 38px;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -50,5 +71,10 @@
     width: 100%;
     height: 100%;
     object-fit: contain;
+  }
+
+  @include mobile {
+    width: 28px;
+    height: 28px;
   }
 }

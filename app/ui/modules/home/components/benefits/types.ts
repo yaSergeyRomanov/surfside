@@ -2,7 +2,7 @@ export interface BenefitsProps {
   benefits: BenefitProps[];
 }
 
-interface BenefitProps {
+export interface BenefitProps {
   title: string;
-  text: string;
+  description: string;
 }

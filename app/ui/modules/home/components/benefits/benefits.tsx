@@ -25,7 +25,7 @@ export const Benefits = ({ benefits }: BenefitsProps) => {
                 </div>
                 <p
                   className={styles.text}
-                  dangerouslySetInnerHTML={{ __html: item.text }}
+                  dangerouslySetInnerHTML={{ __html: item.description }}
                 />
               </button>
             </li>
@@ -34,6 +34,8 @@ export const Benefits = ({ benefits }: BenefitsProps) => {
         <div className={styles.col}>
           <img
             className={styles.image}
+            width={1440}
+            height={1504}
             src="/images/home/benefits-image.webp"
             alt="Surfside brand"
           />

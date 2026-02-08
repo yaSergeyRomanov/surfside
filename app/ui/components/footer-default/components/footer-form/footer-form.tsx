@@ -1,9 +1,8 @@
 "use client";
 import clsx from "clsx";
-import Link from "next/link";
 import { useForm } from "react-hook-form";
 
-import { FormData } from "@/types/general";
+import { FormData, FormLabels } from "@/types/general";
 import { AnimFadeUp } from "@/ui/components/anim-fadeup";
 import { Button } from "@/ui/components/button";
 import { handleInputTelBlur } from "@/utils/handleInputTelBlur";
@@ -11,13 +10,15 @@ import { handleInputTelChange } from "@/utils/handleInputTelChange";
 
 import styles from "./footer-form.module.scss";
 
-export const FooterForm = () => {
+export const FooterForm = ({ formLabels }: { formLabels?: FormLabels }) => {
   const {
     register,
     handleSubmit,
     reset,
     formState: { errors },
   } = useForm<FormData>();
+
+  if (!formLabels) return;
 
   const onSubmit = (data: FormData) => {
     reset();
@@ -31,16 +32,11 @@ export const FooterForm = () => {
             [styles.error]: errors?.firstName,
           })}
           {...register("firstName", {
-            required: "Заполните поле",
+            required: true,
           })}
           type="text"
-          placeholder="Ваше имя"
+          placeholder={formLabels.yourNameLabel}
         />
-        {errors?.firstName && (
-          <div className={styles.errorMessage}>
-            {errors?.firstName?.message}
-          </div>
-        )}
       </AnimFadeUp>
       <AnimFadeUp className={styles.inputWrapper}>
         <input
@@ -48,25 +44,25 @@ export const FooterForm = () => {
             [styles.error]: errors?.tel,
           })}
           {...register("tel", {
-            required: "Заполните поле",
+            required: true,
           })}
           type="tel"
-          placeholder="Ваш телефон"
+          placeholder={formLabels.yourPhoneLabel}
           onChange={(e) => handleInputTelChange(e)}
           onBlur={(e) => handleInputTelBlur(e)}
         />
-        {errors?.tel && (
-          <div className={styles.errorMessage}>{errors?.tel?.message}</div>
-        )}
       </AnimFadeUp>
       <AnimFadeUp className={styles.social}>
-        <h3 className={styles.socialTitle}>Как с&nbsp;вами связаться?</h3>
+        <h3
+          className={styles.socialTitle}
+          dangerouslySetInnerHTML={{ __html: formLabels.howToContactYouLabel }}
+        />
         <div className={styles.socialWrapper}>
           <label className={styles.socialLabel}>
             <input
               className={styles.socialInput}
               {...register("social")}
-              type="radio"
+              type="checkbox"
             />
             <span className={styles.socialText}>Whatsapp</span>
           </label>
@@ -74,7 +70,7 @@ export const FooterForm = () => {
             <input
               className={styles.socialInput}
               {...register("social")}
-              type="radio"
+              type="checkbox"
             />
             <span className={styles.socialText}>Telegram</span>
           </label>
@@ -86,14 +82,11 @@ export const FooterForm = () => {
             [styles.error]: errors?.email,
           })}
           {...register("email", {
-            required: "Заполните поле",
+            required: true,
           })}
           type="email"
-          placeholder="E-mail"
+          placeholder={formLabels.emailLabel}
         />
-        {errors?.email && (
-          <div className={styles.errorMessage}>{errors?.email?.message}</div>
-        )}
       </AnimFadeUp>
       <AnimFadeUp
         className={clsx(styles.agree, { [styles.error]: errors?.agree })}
@@ -106,12 +99,10 @@ export const FooterForm = () => {
             })}
             type="checkbox"
           />
-          <span className={styles.agreeText}>
-            Я согласен с&nbsp;условиями{" "}
-            <Link href="/" target="_blank">
-              обработки персональных данных
-            </Link>
-          </span>
+          <span
+            className={styles.agreeText}
+            dangerouslySetInnerHTML={{ __html: formLabels.agreementLabel }}
+          />
         </label>
       </AnimFadeUp>
       <AnimFadeUp>
@@ -121,7 +112,7 @@ export const FooterForm = () => {
           type="submit"
           as="button"
         >
-          <span>Отправить</span>
+          <span>{formLabels.submitButtonLabel}</span>
         </Button>
       </AnimFadeUp>
     </form>

@@ -28,6 +28,7 @@ const eslintConfig = defineConfig([
       "simple-import-sort/exports": "error",
       "no-duplicate-imports": "error",
       "react-hooks/set-state-in-effect": "warn",
+      "@next/next/no-html-link-for-pages": "warn",
     },
   },
   globalIgnores([".next/**", "out/**", "build/**", "next-env.d.ts"]),

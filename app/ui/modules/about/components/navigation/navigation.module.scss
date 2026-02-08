@@ -7,6 +7,14 @@
   background: var(--bg-secondary-2);
   overflow: hidden;
   position: relative;
+
+  @include tablet {
+    padding: 100px 0 314px;
+  }
+
+  @include mobile {
+    padding: 60px 0 140px;
+  }
 }
 
 .wave,
@@ -16,16 +24,28 @@
   height: auto;
   position: absolute;
   left: 0;
+
+  @include mobile {
+    width: 242px;
+  }
 }
 
 .wave {
   bottom: -1px;
+
+  @include mobile {
+    bottom: -10px;
+  }
 }
 
 .surfer {
   bottom: 30px;
   left: -30px;
   animation: surferAnim 7s ease-out infinite;
+
+  @include mobile {
+    bottom: 0;
+  }
 }
 
 @keyframes surferAnim {
@@ -48,11 +68,27 @@
   flex-wrap: wrap;
   justify-content: center;
   gap: 32px;
+
+  @include mobile {
+    gap: 10px;
+  }
+}
+
+.item {
+  width: 404px;
+
+  @include tablet {
+    width: calc(50% - 16px);
+  }
+
+  @include mobile {
+    width: 100%;
+  }
 }
 
 .button {
   padding: 30px 35px;
-  width: 404px;
+  width: 100%;
   justify-content: space-between;
   font-weight: 200;
   font-size: 32px;
@@ -62,5 +98,15 @@
   svg {
     width: 24px;
     height: 24px;
+  }
+
+  @include mobile {
+    padding: 20px 16px;
+    font-size: 18px;
+
+    svg {
+      width: 13px;
+      height: 13px;
+    }
   }
 }

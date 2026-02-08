@@ -9,22 +9,40 @@
     var(--bg-secondary-2),
     var(--bg-secondary-3)
   );
-}
 
-.title {
-  margin-bottom: 100px;
+  .title {
+    margin-bottom: 100px;
+  }
+
+  @include tablet {
+    .title {
+      margin-bottom: 80px;
+    }
+  }
+
+  @include mobile {
+    padding-bottom: 60px;
+
+    .title {
+      margin-bottom: 40px;
+    }
+  }
 }
 
 .cardList {
   margin-bottom: 50px;
   display: flex;
   flex-wrap: wrap;
+
+  @include mobile {
+    margin-bottom: 16px;
+  }
 }
 
 .card {
   padding: 30px 50px 50px;
   width: calc(100% / 4);
-  min-height: 414px;
+  height: 414px;
   display: flex;
   flex-direction: column;
   position: relative;
@@ -84,6 +102,142 @@
       }
     }
   }
+
+  @include tablet {
+    padding: 30px;
+    width: calc(100% / 2);
+
+    &:nth-child(1) {
+      border: 0;
+      border-bottom: 1px solid fade(var(--text-primary-2), 0.08);
+      order: 2;
+
+      .line {
+        &::after {
+          width: 60px;
+          right: auto;
+          left: -60px;
+        }
+      }
+
+      .cardInner {
+        margin-top: 0;
+      }
+    }
+
+    &:nth-child(2) {
+      border: 0;
+      border-bottom: 1px solid fade(var(--text-primary-2), 0.08);
+      order: 4;
+    }
+
+    &:nth-child(3) {
+      border: 0;
+      border-bottom: 1px solid fade(var(--text-primary-2), 0.08);
+      order: 6;
+
+      .cardInner {
+        margin-top: 0;
+      }
+
+      .line {
+        &::after {
+          width: calc(100% - 50px);
+          left: 50px;
+        }
+      }
+    }
+
+    &:nth-child(4) {
+      border: 0;
+      border-bottom: 1px solid fade(var(--text-primary-2), 0.08);
+      border-right: 1px solid fade(var(--text-primary-2), 0.08);
+      order: 1;
+
+      .line {
+        &::after {
+          width: 60px;
+          left: auto;
+          right: -60px;
+        }
+      }
+
+      .cardInner {
+        margin-top: auto;
+      }
+    }
+
+    &:nth-child(5) {
+      border: 0;
+      border-bottom: 1px solid fade(var(--text-primary-2), 0.08);
+      border-right: 1px solid fade(var(--text-primary-2), 0.08);
+      order: 5;
+
+      .cardInner {
+        margin-top: auto;
+      }
+    }
+
+    &:nth-child(6) {
+      border: 0;
+      border-bottom: 1px solid fade(var(--text-primary-2), 0.08);
+      border-right: 1px solid fade(var(--text-primary-2), 0.08);
+      order: 3;
+    }
+
+    &:nth-child(7) {
+      border: 0;
+      border-bottom: 0;
+      order: 8;
+    }
+
+    &:nth-child(8) {
+      border: 0;
+      border-right: 1px solid fade(var(--text-primary-2), 0.08);
+      border-bottom: 0;
+      order: 7;
+    }
+  }
+
+  @include mobile {
+    padding: 16px;
+    height: 200px;
+
+    &:nth-child(1) {
+      .line {
+        &::after {
+          width: 52px;
+          left: -32px;
+        }
+      }
+    }
+
+    &:nth-child(3) {
+      .line {
+        &::after {
+          width: calc(100% - 34px);
+        }
+      }
+    }
+
+    &:nth-child(4) {
+      .line {
+        &::after {
+          width: 57px;
+          right: -37px;
+        }
+      }
+    }
+
+    &:nth-child(5) {
+      .line {
+        &::after {
+          width: 60px;
+          left: -16px;
+        }
+      }
+    }
+  }
 }
 
 .cardInner {
@@ -104,6 +258,10 @@
   line-height: 1;
   letter-spacing: 0.02em;
   color: var(--text-primary-2);
+
+  @include mobile {
+    font-size: 50px;
+  }
 }
 
 .line {
@@ -122,12 +280,24 @@
     position: absolute;
     top: 0;
   }
+
+  @include mobile {
+    height: 3px;
+
+    &::after {
+      height: 3px;
+    }
+  }
 }
 
 .text {
   font-size: 24px;
   line-height: 1;
   letter-spacing: 0.02em;
+
+  @include mobile {
+    font-size: 14px;
+  }
 }
 
 .projectsLink {
@@ -139,4 +309,13 @@
   line-height: 1;
   color: var(--text-primary);
   border-bottom: 1px solid var(--text-primary);
+
+  @include tablet {
+    margin-left: 0;
+  }
+
+  @include mobile {
+    padding-bottom: 4px;
+    font-size: 14px;
+  }
 }

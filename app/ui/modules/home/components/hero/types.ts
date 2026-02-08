@@ -1,6 +1,8 @@
+import { NavLink } from "@/types/general";
+
 export interface HeroProps {
   title: string;
   text: string;
   buttonFirstLabel: string;
-  buttonSecondLabel: string;
+  buttonSecond: NavLink;
 }

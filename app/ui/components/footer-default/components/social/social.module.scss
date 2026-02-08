@@ -7,6 +7,14 @@
   display: flex;
   flex-wrap: wrap;
   gap: 20px;
+
+  @include tablet {
+    width: 100%;
+  }
+
+  @include mobile {
+    gap: 16px;
+  }
 }
 
 .social {
@@ -21,6 +29,10 @@
     background: var(--accent-color);
     color: var(--bg-primary);
   }
+
+  @include mobile {
+    gap: 34px;
+  }
 }
 
 .item {
@@ -32,6 +44,10 @@
   font-size: 26px;
   line-height: 1;
   letter-spacing: 0.02em;
+
+  @include mobile {
+    font-size: 16px;
+  }
 }
 
 .contact {
@@ -40,4 +56,8 @@
   letter-spacing: 0.02em;
   opacity: 0.4;
   line-height: 1;
+
+  @include mobile {
+    font-size: 12px;
+  }
 }

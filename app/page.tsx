@@ -1,10 +1,16 @@
+import { getHomeData } from "./api/home";
 import { LayoutFullFooter } from "./ui/layouts/layout-full-footer";
 import { HomeModule } from "./ui/modules/home";
+import { generateSeoMetadata } from "./utils/generateSeoMetadata";
 
-export default function Home() {
+export const generateMetadata = generateSeoMetadata(getHomeData);
+
+export default async function Home() {
+  const { pageData } = await getHomeData();
+
   return (
     <LayoutFullFooter>
-      <HomeModule />
+      <HomeModule pageData={pageData} />
     </LayoutFullFooter>
   );
 }

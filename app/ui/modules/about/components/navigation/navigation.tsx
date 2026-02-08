@@ -1,3 +1,4 @@
+import { NavLink } from "@/types/general";
 import { AnimFadeUp } from "@/ui/components/anim-fadeup";
 import { Button } from "@/ui/components/button";
 import { Container } from "@/ui/components/container";
@@ -6,63 +7,26 @@ import PolygonIcon from "@/ui/svgr-icons/polygon.svg";
 
 import styles from "./navigation.module.scss";
 
-export const Navigation = () => {
+export const Navigation = ({ navLinks }: { navLinks: NavLink[] }) => {
   return (
     <Section className={styles.section} Tag="section">
       <Container>
         <ul className={styles.grid}>
-          <li className={styles.item}>
-            <AnimFadeUp>
-              <Button
-                className={styles.button}
-                as="Link"
-                theme="accent"
-                href=""
-              >
-                <span>Юниты</span>
-                <PolygonIcon />
-              </Button>
-            </AnimFadeUp>
-          </li>
-          <li className={styles.item}>
-            <AnimFadeUp>
-              <Button
-                className={styles.button}
-                as="Link"
-                theme="accent"
-                href=""
-              >
-                <span>Мастер-план</span>
-                <PolygonIcon />
-              </Button>
-            </AnimFadeUp>
-          </li>
-          <li className={styles.item}>
-            <AnimFadeUp>
-              <Button
-                className={styles.button}
-                as="Link"
-                theme="accent"
-                href=""
-              >
-                <span>Контакты</span>
-                <PolygonIcon />
-              </Button>
-            </AnimFadeUp>
-          </li>
-          <li className={styles.item}>
-            <AnimFadeUp>
-              <Button
-                className={styles.button}
-                as="Link"
-                theme="accent"
-                href=""
-              >
-                <span>Инвестиция</span>
-                <PolygonIcon />
-              </Button>
-            </AnimFadeUp>
-          </li>
+          {navLinks.map((item, index) => (
+            <li className={styles.item} key={index}>
+              <AnimFadeUp>
+                <Button
+                  className={styles.button}
+                  as="a"
+                  theme="accent"
+                  href={item.url}
+                >
+                  <span>{item.title}</span>
+                  <PolygonIcon />
+                </Button>
+              </AnimFadeUp>
+            </li>
+          ))}
         </ul>
       </Container>
 

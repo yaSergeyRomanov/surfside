@@ -8,6 +8,17 @@
   top: 0;
   right: 0;
   pointer-events: none;
+
+  @include tablet {
+    width: 100%;
+    height: initial;
+    position: initial !important;
+    aspect-ratio: 768/650;
+  }
+
+  @include mobile {
+    aspect-ratio: 320/280;
+  }
 }
 
 .slide {

@@ -1,6 +1,9 @@
+"use client";
+
 import clsx from "clsx";
 import { useForm } from "react-hook-form";
 
+import { useAppStore } from "@/store/useAppStore";
 import { FormData } from "@/types/general";
 import { AnimFadeUp } from "@/ui/components/anim-fadeup";
 import { Button } from "@/ui/components/button";
@@ -21,6 +24,8 @@ export const PopupForm = ({ onClose }: PopupFormProps) => {
     formState: { errors },
   } = useForm<FormData>();
 
+  const formLabels = useAppStore((state) => state.formLabels);
+
   const onSubmit = (data: FormData) => {
     reset();
   };
@@ -32,13 +37,22 @@ export const PopupForm = ({ onClose }: PopupFormProps) => {
           className={styles.title}
           Tag="h3"
           size="XL"
-          text={"Связаться с&nbsp;нами"}
+          text={formLabels.popupTitle}
         />
         <button className={styles.close} type="button" onClick={onClose}>
           <span>Close</span>
           <CloseIcon />
         </button>
       </AnimFadeUp>
+
+      {formLabels.popupSubtitle && (
+        <AnimFadeUp>
+          <p
+            className={styles.subtitle}
+            dangerouslySetInnerHTML={{ __html: formLabels.popupSubtitle }}
+          />
+        </AnimFadeUp>
+      )}
 
       <form className={styles.form} onSubmit={handleSubmit(onSubmit)}>
         <div className={styles.formRow}>
@@ -49,16 +63,11 @@ export const PopupForm = ({ onClose }: PopupFormProps) => {
                   [styles.error]: errors?.firstName,
                 })}
                 {...register("firstName", {
-                  required: "Заполните поле",
+                  required: true,
                 })}
                 type="text"
-                placeholder="Ваше имя"
+                placeholder={formLabels?.yourNameLabel}
               />
-              {errors?.firstName && (
-                <div className={styles.errorMessage}>
-                  {errors?.firstName?.message}
-                </div>
-              )}
             </AnimFadeUp>
             <AnimFadeUp className={styles.inputWrapper}>
               <input
@@ -66,18 +75,13 @@ export const PopupForm = ({ onClose }: PopupFormProps) => {
                   [styles.error]: errors?.tel,
                 })}
                 {...register("tel", {
-                  required: "Заполните поле",
+                  required: true,
                 })}
                 type="tel"
-                placeholder="Ваш телефон"
+                placeholder={formLabels?.yourPhoneLabel}
                 onChange={(e) => handleInputTelChange(e)}
                 onBlur={(e) => handleInputTelBlur(e)}
               />
-              {errors?.tel && (
-                <div className={styles.errorMessage}>
-                  {errors?.tel?.message}
-                </div>
-              )}
             </AnimFadeUp>
             <AnimFadeUp className={styles.inputWrapper}>
               <input
@@ -85,16 +89,11 @@ export const PopupForm = ({ onClose }: PopupFormProps) => {
                   [styles.error]: errors?.email,
                 })}
                 {...register("email", {
-                  required: "Заполните поле",
+                  required: true,
                 })}
                 type="email"
-                placeholder="E-mail"
+                placeholder={formLabels?.emailLabel}
               />
-              {errors?.email && (
-                <div className={styles.errorMessage}>
-                  {errors?.email?.message}
-                </div>
-              )}
             </AnimFadeUp>
           </div>
 
@@ -103,7 +102,7 @@ export const PopupForm = ({ onClose }: PopupFormProps) => {
               <textarea
                 className={clsx(styles.input, styles.textArea)}
                 {...register("message")}
-                placeholder="Сообщение"
+                placeholder={formLabels?.messageLabel}
               />
             </AnimFadeUp>
           </div>
@@ -111,14 +110,14 @@ export const PopupForm = ({ onClose }: PopupFormProps) => {
 
         <AnimFadeUp className={styles.footer}>
           <Button className={styles.submit} as="button" type="submit">
-            <span>Отправить</span>
+            <span>{formLabels?.submitButtonLabel}</span>
           </Button>
           <button
             className={styles.footerClose}
             type="button"
             onClick={onClose}
           >
-            <span>Закрыть</span>
+            <span>{formLabels?.closePopupButtonLabel}</span>
           </button>
         </AnimFadeUp>
       </form>

@@ -1,3 +1,5 @@
+import { NavLink } from "@/types/general";
+
 export interface AboutProps {
   sectionTitle: string;
   cardLabelFirst: string;
@@ -6,5 +8,5 @@ export interface AboutProps {
   cardLabelFourth: string;
   cardLabelFifth: string;
   cardLabelSixth: string;
-  projectsButtonLabel: string;
+  projectButtonMore: NavLink;
 }

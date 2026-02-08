@@ -1,10 +1,10 @@
 import clsx from "clsx";
-import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { useRef, useState } from "react";
 import { createPortal } from "react-dom";
 
 import { useClickOutside } from "@/hooks/useClickOutside";
+import { useAppStore } from "@/store/useAppStore";
 import CloseIcon from "@/ui/svgr-icons/close.svg";
 import InstagramIcon from "@/ui/svgr-icons/instagram-colored.svg";
 import TelegramIcon from "@/ui/svgr-icons/telegram-colored.svg";
@@ -24,7 +24,7 @@ const SOCIAL_LINKS = [
   },
   {
     title: "WhatsApp",
-    url: "https://wa.me/6282235372593",
+    url: "https://wa.me/6282235372593/",
     icon: <WhatsAppIcon />,
   },
   {
@@ -54,10 +54,11 @@ const LANG_LINKS = [
   },
 ];
 
-export const BurgerMenu = ({ burgerTheme }: BurgerMenuProps) => {
+export const BurgerMenu = ({ burgerTheme, navLinks }: BurgerMenuProps) => {
   const pathName = usePathname();
   const [showMenu, setShowMenu] = useState(false);
   const navigationRef = useRef<HTMLDivElement>(null);
+  const locale = useAppStore((state) => state.locale);
 
   useClickOutside(navigationRef, () => setShowMenu(false));
 
@@ -78,14 +79,9 @@ export const BurgerMenu = ({ burgerTheme }: BurgerMenuProps) => {
           <div className={styles.wrapper}>
             <div className={styles.navigation} ref={navigationRef}>
               <div className={styles.header}>
-                <Link
-                  className={styles.logo}
-                  href="/"
-                  onClick={() => setShowMenu(false)}
-                  scroll={false}
-                >
+                <a className={styles.logo} href={locale ? `/${locale}/` : "/"}>
                   <img src="/images/logo-black.svg" alt="Surfside logo" />
-                </Link>
+                </a>
                 <button
                   className={styles.close}
                   type="button"
@@ -98,56 +94,16 @@ export const BurgerMenu = ({ burgerTheme }: BurgerMenuProps) => {
 
               <div className={styles.inner}>
                 <ul className={styles.navList}>
-                  <li className={styles.navItem}>
-                    <Link
+                  {navLinks.map((item, index) => (
+                    <a
                       className={clsx(styles.navLink)}
-                      href="/about/"
-                      onClick={() => setShowMenu(false)}
-                      scroll={false}
+                      href={item.url}
+                      key={index}
                     >
-                      <span>О проекте</span>
-                    </Link>
-                  </li>
-                  <li className={styles.navItem}>
-                    <Link
-                      className={styles.navLink}
-                      href="/location/"
-                      onClick={() => setShowMenu(false)}
-                      scroll={false}
-                    >
-                      <span>Локация</span>
-                    </Link>
-                  </li>
-                  <li className={styles.navItem}>
-                    <Link
-                      className={styles.navLink}
-                      href="/projects/"
-                      onClick={() => setShowMenu(false)}
-                      scroll={false}
-                    >
-                      <span>Юниты</span>
-                    </Link>
-                  </li>
-                  <li className={styles.navItem}>
-                    <Link
-                      className={clsx(styles.navLink, styles.isDisabled)}
-                      href=""
-                      onClick={() => setShowMenu(false)}
-                      scroll={false}
-                    >
-                      <span>Инвестиции</span>
-                    </Link>
-                  </li>
-                  <li className={styles.navItem}>
-                    <Link
-                      className={clsx(styles.navLink)}
-                      href="/contacts/"
-                      onClick={() => setShowMenu(false)}
-                      scroll={false}
-                    >
-                      <span>Контакты</span>
-                    </Link>
-                  </li>
+                      <span>{item.title}</span>
+                    </a>
+                  ))}
+                  <li className={styles.navItem}></li>
                 </ul>
 
                 <div className={styles.contactLinks}>
@@ -183,12 +139,12 @@ export const BurgerMenu = ({ burgerTheme }: BurgerMenuProps) => {
                   {LANG_LINKS.map((item, index) => {
                     return (
                       <li className={styles.langItem} key={index}>
-                        <Link
+                        <a
                           className={`${styles.langLink} ${getActiveLanguage(item.url, pathName) ? styles.isActive : ""}`}
                           href={item.url}
                         >
                           {item.title}
-                        </Link>
+                        </a>
                       </li>
                     );
                   })}

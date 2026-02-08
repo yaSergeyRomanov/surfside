@@ -30,7 +30,6 @@ body {
   max-width: 100vw;
   height: 100%;
   @include reset-scrollbar;
-  scroll-behavior: smooth;
 }
 
 body {
@@ -40,8 +39,12 @@ body {
   font-weight: 400;
   line-height: 1.2;
   -webkit-font-smoothing: antialiased;
-  background: var(--bg-primary);
+  background: var(--bg-secondary-4);
   color: var(--text-primary);
+
+  @include mobile {
+    background: var(--bg-primary);
+  }
 }
 
 * {

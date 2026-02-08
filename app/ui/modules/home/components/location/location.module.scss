@@ -10,6 +10,18 @@
   .title {
     margin-bottom: 30px;
   }
+
+  @include tablet {
+    padding: 100px 0 460px;
+  }
+
+  @include mobile {
+    padding: 60px 0 340px;
+
+    .title {
+      margin-bottom: 20px;
+    }
+  }
 }
 
 .location {
@@ -27,6 +39,10 @@
       margin-bottom: 20px;
     }
   }
+
+  @include mobile {
+    font-size: 16px;
+  }
 }
 
 .mapImage {
@@ -36,4 +52,16 @@
   position: absolute;
   top: 0;
   right: 0;
+
+  @include tablet {
+    height: auto;
+    top: auto;
+    bottom: 0;
+  }
+
+  @include mobile {
+    width: 100%;
+    max-width: 480px;
+    bottom: -30px;
+  }
 }

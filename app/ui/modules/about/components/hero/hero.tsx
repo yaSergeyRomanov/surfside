@@ -8,9 +8,15 @@ import { Container } from "@/ui/components/container";
 import { Popup } from "@/ui/components/popup";
 import { PopupForm } from "@/ui/components/popup/components/popup-form";
 
+import { HeroProps } from "./types";
+
 import styles from "./hero.module.scss";
 
-export const Hero = () => {
+export const Hero = ({
+  title,
+  supTitle,
+  sendRequestButtonLabel,
+}: HeroProps) => {
   const [isShowPopup, setIsShowPopup] = useState(false);
 
   return (
@@ -23,24 +29,28 @@ export const Hero = () => {
 
       <Container className={styles.container} isHigh>
         <div className={styles.content}>
-          <AnimFadeUp className={styles.suptitle}>
-            Единственное, что нужно искать здесь&nbsp;—
-            <br /> свою идеальную волну
+          <AnimFadeUp>
+            <span
+              className={styles.suptitle}
+              dangerouslySetInnerHTML={{ __html: supTitle }}
+            />
           </AnimFadeUp>
           <AnimFadeUp delay={300}>
             <img
               className={styles.logo}
               src="/images/about/logo.svg"
               alt="Surfside logo"
+              width={1240}
+              height={143}
             />
           </AnimFadeUp>
 
           <AnimFadeUp delay={600}>
-            <h1 className={styles.title}>
-              Виллы и&nbsp;апартаменты на&nbsp;Бали, Улувату
-            </h1>
+            <h1
+              className={styles.title}
+              dangerouslySetInnerHTML={{ __html: title }}
+            />
           </AnimFadeUp>
-
           <Popup
             triggerButton={
               <AnimFadeUp delay={900}>
@@ -51,7 +61,7 @@ export const Hero = () => {
                   type="button"
                   onClick={() => setIsShowPopup(true)}
                 >
-                  <span>Оставить заявку</span>
+                  <span>{sendRequestButtonLabel}</span>
                 </Button>
               </AnimFadeUp>
             }

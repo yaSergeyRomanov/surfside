@@ -2,7 +2,8 @@
 
 import { useEffect, useState } from "react";
 
-import { useHeader } from "@/context/headerContext";
+import { ContactsPageResponse } from "@/api/contacts/types";
+import { useAppStore } from "@/store/useAppStore";
 import { AnimFadeUp } from "@/ui/components/anim-fadeup";
 import { Button } from "@/ui/components/button";
 import { Container } from "@/ui/components/container";
@@ -18,23 +19,41 @@ import WhatsAppIcon from "@/ui/svgr-icons/whatsapp.svg";
 
 import styles from "./contacts.module.scss";
 
-export const ContactsModule = () => {
-  const { updateHeader } = useHeader();
+export const CONTACTS = [
+  {
+    label: "+62 822-3537-2593",
+    url: "tel:+6282235372593",
+    icon: PhoneIcon,
+  },
+  {
+    label: "info@surfsidebali.com",
+    url: "mailto:info@surfsidebali.com",
+    icon: EmailIcon,
+  },
+  {
+    label: "WhatsApp",
+    url: "https://wa.me/6282235372593",
+    icon: WhatsAppIcon,
+  },
+  {
+    label: "Telegram",
+    url: "https://t.me/+6282235372593",
+    icon: TelegramIcon,
+  },
+];
+
+export const ContactsModule = ({
+  pageTitle,
+  sendRequestButtonLabel,
+}: ContactsPageResponse) => {
   const [isShowPopup, setIsShowPopup] = useState(false);
+  const updateHeader = useAppStore((state) => state.updateHeader);
 
   useEffect(() => {
     updateHeader({
-      theme: "black",
-      isColoredWhite: false,
+      theme: "black-2",
     });
-
-    return () => {
-      updateHeader({
-        theme: "black",
-        isColoredWhite: false,
-      });
-    };
-  }, []);
+  }, [updateHeader]);
 
   return (
     <>
@@ -51,42 +70,29 @@ export const ContactsModule = () => {
                 Tag="h1"
                 size="L"
                 className={styles.title}
-                text={"Контактная<br />информация"}
+                text={pageTitle}
               />
             </AnimFadeUp>
             <ul className={styles.contacts}>
-              <li className={styles.item}>
-                <AnimFadeUp delay={300}>
-                  <a className={styles.link} href="">
-                    <span>+62 822-3537-2593</span>
-                    <PhoneIcon />
-                  </a>
-                </AnimFadeUp>
-              </li>
-              <li className={styles.item}>
-                <AnimFadeUp delay={400}>
-                  <a className={styles.link} href="">
-                    <span>info@surfsidebali.com</span>
-                    <EmailIcon />
-                  </a>
-                </AnimFadeUp>
-              </li>
-              <li className={styles.item}>
-                <AnimFadeUp delay={500}>
-                  <a className={styles.link} href="">
-                    <span>Whatsapp</span>
-                    <WhatsAppIcon />
-                  </a>
-                </AnimFadeUp>
-              </li>
-              <li className={styles.item}>
-                <AnimFadeUp delay={600}>
-                  <a className={styles.link} href="">
-                    <span>Telegram</span>
-                    <TelegramIcon />
-                  </a>
-                </AnimFadeUp>
-              </li>
+              {CONTACTS.map((contact, index) => {
+                const IconComponent = contact.icon;
+                return (
+                  <li key={contact.url} className={styles.item}>
+                    <AnimFadeUp delay={300 + index * 100}>
+                      <a
+                        className={styles.link}
+                        href={contact.url}
+                        target={
+                          contact.url.startsWith("http") ? "_blank" : "_self"
+                        }
+                      >
+                        <span>{contact.label}</span>
+                        <IconComponent />
+                      </a>
+                    </AnimFadeUp>
+                  </li>
+                );
+              })}
             </ul>
 
             <Popup
@@ -98,7 +104,7 @@ export const ContactsModule = () => {
                     as="button"
                     onClick={() => setIsShowPopup(true)}
                   >
-                    <span>Оставить заявку</span>
+                    <span>{sendRequestButtonLabel}</span>
                     <ArrowRightIcon />
                   </Button>
                 </AnimFadeUp>

@@ -6,18 +6,18 @@ import { useCallback, useEffect, useRef, useState } from "react";
 import { FreeMode, Mousewheel } from "swiper/modules";
 import { Swiper, SwiperSlide } from "swiper/react";
 
+import { useAppStore } from "@/store/useAppStore";
 import { Container } from "@/ui/components/container";
 import { Picture } from "@/ui/components/picture";
-import { useHeader } from "@/context/headerContext";
+import { getStrapiUrl } from "@/utils/formatting-url";
+
+import { InfrastructureProps } from "./types";
 
 import styles from "./infrastructure.module.scss";
 
-const BACKGROUNDS = [
+export const INFRASTRUCTURE_BACKGROUNDS = [
   {
     x1: "/images/about/infrastructure/default-bg.webp",
-  },
-  {
-    x1: "/images/about/infrastructure/img-1.webp",
   },
   {
     x1: "/images/about/infrastructure/img-2.webp",
@@ -36,27 +36,25 @@ const BACKGROUNDS = [
   },
 ];
 
-export const Infrastructure = () => {
-  const { updateHeader } = useHeader();
+export const Infrastructure = ({
+  infrastructure,
+}: {
+  infrastructure: InfrastructureProps[];
+}) => {
   const swiperRef = useRef<SwiperType | null>(null);
   const wrapperRef = useRef<HTMLDivElement>(null);
   const canActivateRef = useRef(true);
   const [pictureIndex, setPictureIndex] = useState(0);
   const [isSliderInViewPort, setIsSliderInViewport] = useState(false);
 
+  const updateHeader = useAppStore((state) => state.updateHeader);
+
   useEffect(() => {
     updateHeader({
       theme: "default",
       isLiftUp: isSliderInViewPort ? true : false,
     });
-
-    return () => {
-      updateHeader({
-        theme: "default",
-        isLiftUp: isSliderInViewPort ? true : false,
-      });
-    };
-  }, [isSliderInViewPort]);
+  }, [updateHeader, isSliderInViewPort]);
 
   const wasScrolledFromTopToBottom = useCallback(() => {
     if (!wrapperRef.current) return false;
@@ -79,13 +77,18 @@ export const Infrastructure = () => {
   const startSliderAnimation = () => {
     if (!wrapperRef.current) return;
 
-    window.scrollTo({
-      top: wrapperRef.current.offsetTop,
-      behavior: "auto",
-    });
     document.body.style.overflow = "hidden";
     setIsSliderInViewport(true);
     canActivateRef.current = false;
+
+    requestAnimationFrame(() => {
+      if (wrapperRef.current) {
+        wrapperRef.current.scrollIntoView({
+          behavior: "auto",
+          block: "start",
+        });
+      }
+    });
   };
 
   useEffect(() => {
@@ -140,7 +143,7 @@ export const Infrastructure = () => {
   return (
     <section className={styles.wrapper} ref={wrapperRef}>
       <div className={styles.backgrounds}>
-        {BACKGROUNDS.map((item, index) => (
+        {INFRASTRUCTURE_BACKGROUNDS.map((item, index) => (
           <Picture
             className={clsx(styles.backgroundPicture, {
               [styles.isShow]: index === pictureIndex,
@@ -169,136 +172,27 @@ export const Infrastructure = () => {
           mousewheel={true}
           onSwiper={handleSwiperInit}
         >
-          <SwiperSlide className={styles.slide}>
-            <div className={styles.slideCard}>
-              <div className={styles.slideHeader}>
-                <img
-                  src={"/images/about/infrastructure/default-icon.svg"}
-                  alt="Slide icon 1"
+          {infrastructure.map((item, index) => (
+            <SwiperSlide className={styles.slide} key={index}>
+              <div className={styles.slideCard}>
+                <div className={styles.slideHeader}>
+                  <img
+                    src={getStrapiUrl(item.icon.url)}
+                    alt={item.icon.alternativeText || item.title}
+                    width={item.icon.width}
+                    height={item.icon.height}
+                  />
+                  {item.title && (
+                    <h3 dangerouslySetInnerHTML={{ __html: item.title }} />
+                  )}
+                </div>
+                <p
+                  className={styles.slideText}
+                  dangerouslySetInnerHTML={{ __html: item.text }}
                 />
               </div>
-              <p className={styles.slideText}>
-                Чтобы жизнь у&nbsp;океана была беззаботной, всё должно быть под
-                рукой.Мы создали инфраструктуру, которая охватывает все аспекты
-                жизни&nbsp;&mdash; от&nbsp;хранения серфборда до&nbsp;рабочей
-                встречи и&nbsp;отдыха.
-              </p>
-            </div>
-          </SwiperSlide>
-          <SwiperSlide className={styles.slide}>
-            <div className={styles.slideCard}>
-              <div className={styles.slideHeader}>
-                <img
-                  src={"/images/about/infrastructure/icon-1.svg"}
-                  alt="Slide icon 2"
-                />
-                <h3>Лобби</h3>
-              </div>
-              <p className={styles.slideText}>
-                Круглосуточное стильное пространство, где вас встретит команда
-                консьержей
-                <br />
-                и&nbsp;атмосфера гостеприимства
-                <br />
-                в&nbsp;любое время суток.
-              </p>
-            </div>
-          </SwiperSlide>
-          <SwiperSlide className={styles.slide}>
-            <div className={styles.slideCard}>
-              <div className={styles.slideHeader}>
-                <img
-                  src={"/images/about/infrastructure/icon-2.svg"}
-                  alt="Slide icon 2"
-                />
-                <h3>Йога-центр</h3>
-              </div>
-              <p className={styles.slideText}>
-                Зал для практик с&nbsp;видами на&nbsp;океан,
-                <br /> где разминка перед волной
-                <br /> или вечерняя медитация становятся
-                <br /> ежедневным ритуалом.
-              </p>
-            </div>
-          </SwiperSlide>
-          <SwiperSlide className={styles.slide}>
-            <div className={styles.slideCard}>
-              <div className={styles.slideHeader}>
-                <img
-                  src={"/images/about/infrastructure/icon-3.svg"}
-                  alt="Slide icon 3"
-                />
-                <h3>
-                  СПА, холодная
-                  <br />
-                  купель, сауна
-                </h3>
-              </div>
-              <p className={styles.slideText}>
-                Зал для практик с&nbsp;видами на&nbsp;океан,
-                <br /> где разминка перед волной
-                <br /> или вечерняя медитация становятся
-                <br /> ежедневным ритуалом.
-              </p>
-            </div>
-          </SwiperSlide>
-          <SwiperSlide className={styles.slide}>
-            <div className={styles.slideCard}>
-              <div className={styles.slideHeader}>
-                <img
-                  src={"/images/about/infrastructure/icon-4.svg"}
-                  alt="Slide icon 4"
-                />
-                <h3>
-                  Бассейн и&nbsp;зона
-                  <br /> отдыха
-                </h3>
-              </div>
-              <p className={styles.slideText}>
-                Общий бассейн и&nbsp;терраса&nbsp;&mdash; место
-                <br />
-                ваших встреч и&nbsp;живого общения
-              </p>
-            </div>
-          </SwiperSlide>
-          <SwiperSlide className={styles.slide}>
-            <div className={styles.slideCard}>
-              <div className={styles.slideHeader}>
-                <img
-                  src={"/images/about/infrastructure/icon-5.svg"}
-                  alt="Slide icon 5"
-                />
-                <h3>
-                  Багги для гостей
-                  <br /> и&nbsp;владельцев
-                </h3>
-              </div>
-              <p className={styles.slideText}>
-                Удобные багги в&nbsp;вашем распоряжении
-                <br /> для свободного перемещения
-                <br /> по&nbsp;территории и&nbsp;к&nbsp;пляжу
-                <br /> в&nbsp;истинно балийском стиле.
-              </p>
-            </div>
-          </SwiperSlide>
-          <SwiperSlide className={styles.slide}>
-            <div className={styles.slideCard}>
-              <div className={styles.slideHeader}>
-                <img
-                  src={"/images/about/infrastructure/icon-6.svg"}
-                  alt="Slide icon 6"
-                />
-                <h3>
-                  Подземная
-                  <br /> парковка
-                </h3>
-              </div>
-              <p className={styles.slideText}>
-                Защищённая и&nbsp;просторная парковка,
-                <br /> где ваш транспорт будет в&nbsp;полной безопасности.
-              </p>
-            </div>
-          </SwiperSlide>
+            </SwiperSlide>
+          ))}
         </Swiper>
       </Container>
     </section>

@@ -1,3 +1,7 @@
+@use "@/ui/styles/functions" as *;
+@use "@/ui/styles/mixins" as *;
+@use "@/ui/styles/settings" as *;
+
 .title {
   margin: 0;
   display: block;
@@ -12,14 +16,26 @@
 .title-size-XXL {
   font-size: 46px;
   line-height: 1;
+
+  @include mobile {
+    font-size: 30px;
+  }
 }
 
 .title-size-XL {
   font-size: 32px;
   line-height: 1;
+
+  @include mobile {
+    font-size: 20px;
+  }
 }
 
 .title-size-L {
   font-size: 28px;
   line-height: 1;
+
+  @include mobile {
+    font-size: 20px;
+  }
 }

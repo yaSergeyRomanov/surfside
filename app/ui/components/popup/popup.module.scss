@@ -7,13 +7,22 @@
   height: 100vh;
   height: 100dvh;
   display: flex;
-  background: fade(var(--bg-primary), 0.9);
+  background: fade(var(--bg-secondary-3), 0.66);
   position: fixed;
   top: 0;
   left: 0;
   z-index: 101;
+
+  @include mobile {
+    padding: 16px;
+  }
 }
 
 .content {
   margin: auto;
+
+  @include mobile {
+    margin: auto 0;
+    width: 100%;
+  }
 }

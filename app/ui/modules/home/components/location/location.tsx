@@ -9,7 +9,7 @@ import { LocationProps } from "./types";
 
 import styles from "./location.module.scss";
 
-export const Location = ({ title, text, buttonLabel }: LocationProps) => {
+export const Location = ({ title, text, button }: LocationProps) => {
   return (
     <Section className={styles.section} Tag={"section"}>
       <Container>
@@ -31,8 +31,13 @@ export const Location = ({ title, text, buttonLabel }: LocationProps) => {
           </AnimFadeUp>
 
           <AnimFadeUp delay={600}>
-            <Button className={styles.button} as="Link" href="/location/">
-              <span>{buttonLabel}</span>
+            <Button
+              className={styles.button}
+              isHasIcon
+              as="a"
+              href={button.url}
+            >
+              <span>{button.title}</span>
               <PolygonIcon />
             </Button>
           </AnimFadeUp>

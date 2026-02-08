@@ -8,16 +8,25 @@ import { HomePageData } from "./types";
 
 const { apiEndpoint, authToken } = CONFIG;
 
-const query = qs.stringify(
-  {
-    populate: "*",
-  },
-  {
-    encodeValuesOnly: true,
-  },
-);
+export const getHomeData = async (locale?: string): Promise<HomePageData> => {
+  const query = qs.stringify(
+    {
+      populate: [
+        "marquee",
+        "benefits",
+        "heroButtonUnits",
+        "locationSectionButton",
+        "aboutProjectButton",
+        "seo",
+        "seo.ogImage",
+      ],
+      ...(locale && { locale }),
+    },
+    {
+      encodeValuesOnly: true,
+    },
+  );
 
-export const getChatsData = async (): Promise<HomePageData> => {
   const url = new URL("/api/home", apiEndpoint);
   url.search = query;
 
@@ -26,5 +35,7 @@ export const getChatsData = async (): Promise<HomePageData> => {
     authToken: authToken,
   });
 
-  return response.data;
+  return {
+    pageData: response.data,
+  };
 };

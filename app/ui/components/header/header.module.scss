@@ -5,26 +5,28 @@
 .header {
   &.isLiftUp {
     .wrapper {
-      transform: translateY(-110px);
+      top: -110px;
     }
   }
 
-  &.isColored {
-    .wrapper {
-      background: var(--text-primary);
-      border-color: fade(var(--bg-primary), 0.1);
-    }
+  &.isSticky {
+    &:not(.isColoredWhite) {
+      .wrapper {
+        background: var(--text-primary);
+        border-color: fade(var(--bg-primary), 0.1);
+      }
 
-    .button {
-      background: var(--bg-primary);
-      border-color: var(--bg-primary);
-      color: var(--text-primary);
+      .button {
+        background: var(--bg-primary);
+        border-color: var(--bg-primary);
+        color: var(--text-primary);
+      }
     }
   }
 
   &.isColoredWhite {
     .wrapper {
-      background: var(--bg-primary);
+      background: var(--bg-secondary-4);
       border-color: fade(var(--text-primary-2), 0.1);
     }
   }
@@ -33,6 +35,31 @@
     padding: 13px 21px 12px;
     border-radius: 5px;
     font-size: 12px;
+    pointer-events: visible;
+  }
+
+  @include tablet {
+    &.isSticky {
+      &.isColoredBlue {
+        .wrapper {
+          background: fade(#001c54, 0.6);
+        }
+      }
+    }
+
+    &.isColoredBlue {
+      .wrapper {
+        background: fade(#001c54, 0.6);
+      }
+    }
+  }
+
+  @include mobile {
+    &.isColoredWhite {
+      .wrapper {
+        background: var(--bg-primary);
+      }
+    }
   }
 }
 
@@ -45,6 +72,24 @@
   left: 0;
   z-index: 99;
   transition: $transition-fast;
+  animation: animWrapper 0.6s ease-out forwards;
+
+  @include tablet {
+    border-color: fade(var(--bg-secondary-4), 0.3);
+  }
+
+  @include mobile {
+    padding: 16px 0;
+  }
+}
+
+@keyframes animWrapper {
+  from {
+    transform: translateY(-110px);
+  }
+  to {
+    transform: translateY(0);
+  }
 }
 
 .row {
@@ -57,10 +102,20 @@
   display: flex;
   align-items: center;
   gap: 60px;
+
+  @include mobile {
+    width: 100%;
+    justify-content: space-between;
+
+    &:nth-child(2) {
+      display: none;
+    }
+  }
 }
 
 .logo {
   display: block;
+  pointer-events: visible;
 
   img {
     display: block;

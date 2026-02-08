@@ -1,38 +1,58 @@
 "use client";
 import clsx from "clsx";
-import Link from "next/link";
 import { useEffect, useRef, useState } from "react";
 
-import { useHeader } from "@/context/headerContext";
+import { useWindowSize } from "@/hooks/useWindowSize";
+import { useAppStore } from "@/store/useAppStore";
 
 import { BurgerMenu } from "../burger-menu";
 import { Button } from "../button";
 import { Container } from "../container";
 
+import { useHeaderData } from "./useHeaderData";
+
 import styles from "./header.module.scss";
 
 export const Header = () => {
-  const { theme, isLiftUp, isColoredWhite } = useHeader();
-  const [isColored, setIsColored] = useState(false);
+  const headerTheme = useAppStore((state) => state.headerTheme);
+  const isLiftUp = useAppStore((state) => state.isLiftUp);
+  const isColoredWhite = useAppStore((state) => state.isColoredWhite);
+  const isColoredBlue = useAppStore((state) => state.isColoredBlue);
+  const locale = useAppStore((state) => state.locale);
+
+  const { data } = useHeaderData(locale || "ru");
+  const [isSticky, setIsSticky] = useState(false);
+  const [isMounted, setIsMounted] = useState(false);
   const headerRef = useRef<HTMLDivElement>(null);
+  const { width } = useWindowSize();
+
+  useEffect(() => {
+    setIsMounted(true);
+  }, []);
+
+  const isAdaptive = isMounted && width <= 1279;
 
   const handleScroll = () => {
-    window.scrollY >= 10 ? setIsColored(true) : setIsColored(false);
+    window.scrollY >= 10 ? setIsSticky(true) : setIsSticky(false);
   };
 
   useEffect(() => {
     window.addEventListener("scroll", handleScroll);
-
     return () => {
       window.removeEventListener("scroll", handleScroll);
     };
   }, []);
 
+  if (!data) {
+    return null;
+  }
+
   return (
     <header
       className={clsx(styles.header, {
-        [styles.isColored]: isColored,
+        [styles.isSticky]: isSticky,
         [styles.isColoredWhite]: isColoredWhite,
+        [styles.isColoredBlue]: isColoredBlue,
         [styles.isLiftUp]: isLiftUp,
       })}
       ref={headerRef}
@@ -41,39 +61,100 @@ export const Header = () => {
         <Container>
           <div className={styles.row}>
             <div className={styles.col}>
-              {(theme === "default" || theme === "white") && (
-                <Link className={styles.logo} href="/">
-                  <img src="/images/logo.svg" alt="Surfside logo" />
-                </Link>
+              {(headerTheme === "default" || headerTheme === "white") && (
+                <a className={styles.logo} href={locale ? `/${locale}/` : "/"}>
+                  <img
+                    src="/images/logo.svg"
+                    alt="Surfside logo"
+                    width={200}
+                    height={23}
+                  />
+                </a>
               )}
-              {theme === "black" && (
-                <Link className={styles.logo} href="/">
-                  <img src="/images/logo-black.svg" alt="Surfside logo" />
-                </Link>
+              {headerTheme === "black" && (
+                <a className={styles.logo} href={locale ? `/${locale}/` : "/"}>
+                  <img
+                    src="/images/logo-black.svg"
+                    alt="Surfside logo"
+                    width={200}
+                    height={23}
+                  />
+                </a>
+              )}
+              {headerTheme === "black-2" && !isSticky && (
+                <a className={styles.logo} href={locale ? `/${locale}/` : "/"}>
+                  <img
+                    src="/images/logo-black.svg"
+                    alt="Surfside logo"
+                    width={200}
+                    height={23}
+                  />
+                </a>
+              )}
+              {headerTheme === "black-2" && isSticky && (
+                <a className={styles.logo} href={locale ? `/${locale}/` : "/"}>
+                  <img
+                    src="/images/logo.svg"
+                    alt="Surfside logo"
+                    width={200}
+                    height={23}
+                  />
+                </a>
               )}
 
-              {(theme === "default" || theme === "white") && <BurgerMenu />}
-              {theme === "black" && <BurgerMenu burgerTheme="black" />}
+              {(headerTheme === "default" || headerTheme === "white") && (
+                <BurgerMenu navLinks={data.navLinks} />
+              )}
+              {headerTheme === "black" && (
+                <BurgerMenu burgerTheme="black" navLinks={data.navLinks} />
+              )}
+              {headerTheme === "black-2" && !isSticky && (
+                <BurgerMenu burgerTheme="black" navLinks={data.navLinks} />
+              )}
+              {headerTheme === "black-2" && isSticky && (
+                <BurgerMenu navLinks={data.navLinks} />
+              )}
             </div>
+
             <div className={styles.col}>
-              {(theme === "default" || theme === "black") && (
+              {((headerTheme === "default" && !isAdaptive) ||
+                headerTheme === "black") && (
                 <Button
                   className={styles.button}
-                  as="Link"
+                  as="a"
                   theme="primary"
-                  href="/contacts/"
+                  href={data.contactUsButton.url}
                 >
-                  <span>Связаться с нами</span>
+                  <span>{data.contactUsButton.title}</span>
                 </Button>
               )}
-              {theme === "white" && (
+              {headerTheme === "default" && isAdaptive && (
                 <Button
                   className={styles.button}
-                  as="Link"
+                  as="a"
                   theme="white"
-                  href="/contacts/"
+                  href={data.contactUsButton.url}
                 >
-                  <span>Связаться с нами</span>
+                  <span>{data.contactUsButton.title}</span>
+                </Button>
+              )}
+              {headerTheme === "white" && (
+                <Button
+                  className={styles.button}
+                  as="a"
+                  theme="white"
+                  href={data.contactUsButton.url}
+                >
+                  <span>{data.contactUsButton.title}</span>
+                </Button>
+              )}
+              {headerTheme === "black-2" && (
+                <Button
+                  className={styles.button}
+                  as="a"
+                  href={data.contactUsButton.url}
+                >
+                  <span>{data.contactUsButton.title}</span>
                 </Button>
               )}
             </div>

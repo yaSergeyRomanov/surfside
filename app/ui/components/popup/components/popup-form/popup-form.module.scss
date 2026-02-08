@@ -7,13 +7,44 @@
   width: 742px;
   background: var(--bg-primary);
   border: 1px solid fade(var(--text-primary-2), 0.1);
+
+  @include tablet {
+    width: 668px;
+  }
+
+  @include mobile {
+    padding: 20px;
+    width: 100%;
+
+    .submit {
+      width: 136px;
+    }
+  }
 }
 
 .header {
-  margin-bottom: 30px;
+  margin-bottom: 15px;
   display: flex;
   align-items: center;
   justify-content: space-between;
+
+  @include mobile {
+    margin-bottom: 14px;
+  }
+}
+
+.subtitle {
+  margin-bottom: 30px;
+  font-size: 16px;
+
+  @include mobile {
+    margin-bottom: 25px;
+    font-size: 12px;
+
+    br {
+      display: none;
+    }
+  }
 }
 
 .close {
@@ -26,6 +57,7 @@
   background: none;
   border: none;
   font-size: 0;
+  color: var(--text-primary);
   cursor: pointer;
   transition: $transition-fast;
 
@@ -44,6 +76,11 @@
     width: 18px;
     height: 18px;
   }
+
+  @include mobile {
+    width: 18px;
+    height: 18px;
+  }
 }
 
 .form {
@@ -53,6 +90,11 @@
 .formRow {
   display: flex;
   gap: 10px;
+
+  @include mobile {
+    flex-direction: column;
+    gap: 5px;
+  }
 }
 
 .formCol {
@@ -60,6 +102,11 @@
   display: flex;
   flex-direction: column;
   gap: 10px;
+
+  @include mobile {
+    width: 100%;
+    gap: 5px;
+  }
 }
 
 .inputWrapper {
@@ -72,6 +119,7 @@
   width: 100%;
   background: var(--bg-inputs-3);
   border: 1px solid fade(var(--text-primary-2), 0.1);
+  border-radius: 0;
   font: inherit;
   font-size: 20px;
   line-height: 1;
@@ -100,11 +148,23 @@
     color: fade(var(--text-primary-2), 0.4);
     line-height: 1;
   }
+
+  @include mobile {
+    font-size: 14px;
+
+    &::placeholder {
+      font-size: 14px;
+    }
+  }
 }
 
 .textArea {
   height: 100%;
   resize: none;
+
+  @include mobile {
+    height: 88px;
+  }
 }
 
 .errorMessage {
@@ -141,4 +201,8 @@
 
 .footer {
   margin-top: 35px;
+
+  @include mobile {
+    margin-top: 30px;
+  }
 }

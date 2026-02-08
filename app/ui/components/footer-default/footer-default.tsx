@@ -1,3 +1,7 @@
+import { useEffect, useState } from "react";
+
+import { useWindowSize } from "@/hooks/useWindowSize";
+
 import { AnimFadeUp } from "../anim-fadeup";
 import { Container } from "../container";
 import { Title } from "../title";
@@ -8,7 +12,20 @@ import { FooterDefaultProps } from "./types";
 
 import styles from "./footer-default.module.scss";
 
-export const FooterDefault = ({ title, text }: FooterDefaultProps) => {
+export const FooterDefault = ({
+  title,
+  text,
+  formLabels,
+}: FooterDefaultProps) => {
+  const [isMounted, setIsMounted] = useState(false);
+  const { width } = useWindowSize();
+
+  useEffect(() => {
+    setIsMounted(true);
+  }, []);
+
+  const isAdaptive = isMounted && width <= 1279;
+
   return (
     <footer className={styles.footer}>
       <Container>
@@ -17,7 +34,7 @@ export const FooterDefault = ({ title, text }: FooterDefaultProps) => {
             <AnimFadeUp>
               <Title
                 className={styles.title}
-                Tag={"h1"}
+                Tag={"h3"}
                 size="XXL"
                 text={title}
               />
@@ -28,11 +45,12 @@ export const FooterDefault = ({ title, text }: FooterDefaultProps) => {
                 dangerouslySetInnerHTML={{ __html: text }}
               />
             </AnimFadeUp>
-            <Social />
+            {!isAdaptive && <Social />}
           </div>
           <div className={styles.col}>
-            <FooterForm />
+            <FooterForm formLabels={formLabels} />
           </div>
+          {isAdaptive && isMounted && <Social />}
         </div>
       </Container>
     </footer>

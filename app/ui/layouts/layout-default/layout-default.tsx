@@ -1,45 +1,17 @@
 "use client";
 
-import { ReactNode, useCallback, useMemo, useState } from "react";
+import { useEffect } from "react";
 
-import { HeaderContext } from "@/context/headerContext";
-import { Header } from "@/ui/components/header";
-import { golos, pragmatica } from "@/utils/next-fonts";
+import { useAppStore } from "@/store/useAppStore";
 
-export const LayoutDefault = ({ children }: { children: ReactNode }) => {
-  const [headerProps, setHeaderProps] = useState({
-    theme: "default",
-    isLiftUp: false,
-    isColoredWhite: false,
-  });
+import { LayoutDefaultProps } from "./types";
 
-  const updateHeader = useCallback((newProps: { theme: string }) => {
-    setHeaderProps((prev) => ({ ...prev, ...newProps }));
-  }, []);
+export const LayoutDefault = ({ children, locale }: LayoutDefaultProps) => {
+  const updateLocale = useAppStore((state) => state.updateLocale);
 
-  const contextValue = useMemo(
-    () => ({
-      theme: headerProps.theme,
-      isLiftUp: headerProps.isLiftUp,
-      isColoredWhite: headerProps.isColoredWhite,
-      updateHeader,
-    }),
-    [
-      headerProps.theme,
-      headerProps.isLiftUp,
-      headerProps.isColoredWhite,
-      updateHeader,
-    ],
-  );
+  useEffect(() => {
+    updateLocale(locale);
+  }, [locale, updateLocale]);
 
-  return (
-    <html lang="en">
-      <body className={`${pragmatica.variable} ${golos.variable}`}>
-        <HeaderContext value={contextValue}>
-          <Header />
-          {children}
-        </HeaderContext>
-      </body>
-    </html>
-  );
+  return <>{children}</>;
 };

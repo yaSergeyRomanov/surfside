@@ -1,3 +1,6 @@
+@use "@/ui/styles/mixins" as *;
+@use "@/ui/styles/settings" as *;
+
 .section {
   position: relative;
 
@@ -7,5 +10,11 @@
 
   &.isHigh {
     height: 100vh;
+  }
+
+  @include tablet {
+    &.isHigh {
+      height: initial;
+    }
   }
 }

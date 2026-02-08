@@ -7,28 +7,30 @@ import { Container } from "@/ui/components/container";
 import { Picture } from "@/ui/components/picture";
 import { getActiveLanguage } from "@/utils/getActiveLanguage";
 
+import { FooterBgProps } from "./types";
+
 import styles from "./footer-bg.module.scss";
 
 const SOCIAL_LINKS = [
   {
-    icon: "/icons/whatsapp-social.svg",
+    icon: "/icons/telegram-social.svg",
     title: "Telegram",
-    url: "",
+    url: "https://t.me/surfsidebali/",
   },
   {
     icon: "/icons/inst-social.svg",
     title: "Instagram",
-    url: "",
+    url: "https://www.instagram.com/surfside_bali/",
   },
   {
     icon: "/icons/whatsapp-social.svg",
     title: "WhatsApp",
-    url: "",
+    url: "https://wa.me/6282235372593/",
   },
   {
     icon: "/icons/youtube-social.svg",
-    title: "YouTubes",
-    url: "",
+    title: "YouTube",
+    url: "https://www.youtube.com/@SurfsideProjectBali/",
   },
 ];
 
@@ -47,18 +49,7 @@ const LANG_LINKS = [
   },
 ];
 
-const NAV_LINKS = [
-  {
-    title: "Политика конфеденциальности",
-    url: "",
-  },
-  {
-    title: "Политика использования куки-файлов",
-    url: "",
-  },
-];
-
-export const FooterBg = () => {
+export const FooterBg = ({ navLinks }: FooterBgProps) => {
   const pathName = usePathname();
 
   return (
@@ -66,15 +57,17 @@ export const FooterBg = () => {
       <Picture
         className={styles.image}
         image={{ x1: "/images/footer-bg.webp" }}
+        width={2880}
+        height={1920}
       />
 
       <Container className={styles.bottom}>
         <div className={styles.row}>
           <nav className={styles.nav}>
-            {NAV_LINKS.map((item, index) => (
-              <Link className={styles.navLink} href={item.url} key={index}>
+            {navLinks.map((item, index) => (
+              <a className={styles.navLink} href={item.url} key={index}>
                 {item.title}
-              </Link>
+              </a>
             ))}
           </nav>
 
@@ -83,16 +76,18 @@ export const FooterBg = () => {
               className={styles.logo}
               src="/images/logo.svg"
               alt="Surfside logo"
+              width={462}
+              height={53}
             />
             <ul className={styles.langLinks}>
               {LANG_LINKS.map((item, index) => (
                 <li className={styles.langItem} key={index}>
-                  <Link
+                  <a
                     className={`${styles.lang} ${getActiveLanguage(item.url, pathName) ? styles.isActive : ""}`}
                     href={item.url}
                   >
                     {item.title}
-                  </Link>
+                  </a>
                 </li>
               ))}
             </ul>
@@ -107,7 +102,12 @@ export const FooterBg = () => {
                   target="_blank"
                 >
                   <span>{item.title}</span>
-                  <img src={item.icon} alt={item.title} />
+                  <img
+                    src={item.icon}
+                    alt={item.title}
+                    width={30}
+                    height={30}
+                  />
                 </a>
               </li>
             ))}

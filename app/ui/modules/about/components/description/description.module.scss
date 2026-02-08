@@ -19,6 +19,17 @@
   top: 200px;
   left: 50%;
   transform: translateX(-50%);
+
+  @include tablet {
+    top: 100px;
+  }
+
+  @include mobile {
+    padding: 60px 0 30px;
+    position: initial;
+    transform: translateY(0);
+    background: linear-gradient(to bottom, #d6dfe3, #f0f1f1);
+  }
 }
 
 .title {
@@ -30,6 +41,17 @@
   font-size: 40px;
   line-height: 1.1;
   text-align: right;
+
+  @include tablet {
+    margin: 0 0 40px;
+    text-align: left;
+    font-size: 32px;
+  }
+
+  @include mobile {
+    margin-bottom: 20px;
+    font-size: 24px;
+  }
 }
 
 .text {
@@ -39,4 +61,15 @@
   display: flex;
   flex-direction: column;
   gap: 30px;
+
+  @include tablet {
+    margin-left: 0;
+    font-size: 18px;
+    gap: 20px;
+  }
+
+  @include mobile {
+    font-size: 14px;
+    gap: 16px;
+  }
 }

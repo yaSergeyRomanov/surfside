@@ -1,0 +1,81 @@
+@use "@/ui/styles/functions" as *;
+@use "@/ui/styles/mixins" as *;
+@use "@/ui/styles/settings" as *;
+
+.footer {
+  display: none;
+
+  @include tablet {
+    padding: 50px 0;
+    display: block;
+    background: var(--bg-secondary-4);
+  }
+
+  @include mobile {
+    padding: 40px 0;
+  }
+}
+
+.container {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.logo {
+  display: block;
+
+  img {
+    display: block;
+    width: 122px;
+    height: auto;
+  }
+}
+
+.nav {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.navLink {
+  font-weight: 200;
+  font-size: 14px;
+  width: max-content;
+  line-height: 1;
+  letter-spacing: 0.02em;
+}
+
+.langLinks {
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+  gap: 16px;
+  transition: $transition-fast;
+
+  @include mobile {
+    gap: 10px;
+  }
+}
+
+.lang {
+  display: block;
+  font-size: 14px;
+  letter-spacing: 0.02em;
+  text-transform: uppercase;
+  color: var(--text-primary);
+  opacity: 0.6;
+  border-bottom: 1px solid transparent;
+  transition: $transition-fast;
+
+  @media (hover: hover) {
+    &:hover {
+      opacity: 1;
+    }
+  }
+
+  &.isActive {
+    opacity: 1;
+    border-bottom-color: var(--text-primary);
+  }
+}

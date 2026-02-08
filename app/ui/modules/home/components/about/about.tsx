@@ -18,7 +18,7 @@ export const About = ({
   cardLabelFourth,
   cardLabelFifth,
   cardLabelSixth,
-  projectsButtonLabel,
+  projectButtonMore,
 }: AboutProps) => {
   return (
     <Section className={styles.section} Tag="section">
@@ -54,6 +54,8 @@ export const About = ({
             className={styles.image}
             src="/images/home/about-1.webp"
             alt="Surfside villas"
+            width={720}
+            height={828}
           />
         </li>
 
@@ -124,14 +126,16 @@ export const About = ({
             className={styles.image}
             src="/images/home/about-2.webp"
             alt="Surfside bedroom"
+            width={720}
+            height={828}
           />
         </li>
       </ul>
       <Container>
         <AnimFadeUp>
-          <Link className={styles.projectsLink} href="/projects/">
-            <span>{projectsButtonLabel}</span>
-          </Link>
+          <a className={styles.projectsLink} href={projectButtonMore.url}>
+            <span>{projectButtonMore.title}</span>
+          </a>
         </AnimFadeUp>
       </Container>
     </Section>

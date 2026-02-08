@@ -6,6 +6,7 @@ import { useEffect, useRef } from "react";
 import SplitType from "split-type";
 
 import { Container } from "../container";
+import { Picture } from "../picture";
 
 import { KaraokeTextProps } from "./types";
 
@@ -25,7 +26,6 @@ export const KaraokeText = ({ text, className }: KaraokeTextProps) => {
       const originalText = target.textContent || "";
       target.innerHTML = originalText;
 
-      // Используем SplitType для разбивки на слова и строки
       const split = new SplitType(target, {
         types: "words",
         tagName: "span",
@@ -44,7 +44,6 @@ export const KaraokeText = ({ text, className }: KaraokeTextProps) => {
         });
       }
 
-      // Группируем слова по строкам
       const linesContainer = document.createElement("div");
       linesContainer.classList.add("lines-container");
 
@@ -78,7 +77,6 @@ export const KaraokeText = ({ text, className }: KaraokeTextProps) => {
       target.innerHTML = "";
       target.appendChild(linesContainer);
 
-      // Создаем text-mask элементы для каждой строки
       const textMasks: HTMLSpanElement[] = [];
       target.querySelectorAll(".line").forEach((line) => {
         const lineElement = line as HTMLDivElement;
@@ -111,7 +109,6 @@ export const KaraokeText = ({ text, className }: KaraokeTextProps) => {
       animationRef.current.scrollTrigger?.kill();
     }
 
-    // Устанавливаем начальную позицию (100% - полностью закрашено)
     gsap.set(textMasks, {
       backgroundPosition: "100% 0%",
     });
@@ -127,7 +124,6 @@ export const KaraokeText = ({ text, className }: KaraokeTextProps) => {
       },
     });
 
-    // Анимируем background-position с 100% до 0%
     animationRef.current.to(textMasks, {
       backgroundPosition: "0% 0%",
       ease: "none",
@@ -145,7 +141,6 @@ export const KaraokeText = ({ text, className }: KaraokeTextProps) => {
         await document.fonts.ready;
       }
 
-      // Ждем загрузки страницы
       if (document.readyState !== "complete") {
         await new Promise((resolve) =>
           window.addEventListener("load", resolve),
@@ -156,7 +151,6 @@ export const KaraokeText = ({ text, className }: KaraokeTextProps) => {
 
       initCurtain(targetRef.current!, sectionRef.current!);
 
-      // Добавляем обработчик ресайза
       let resizeTimeout: NodeJS.Timeout;
       const handleResize = () => {
         clearTimeout(resizeTimeout);
@@ -196,10 +190,12 @@ export const KaraokeText = ({ text, className }: KaraokeTextProps) => {
           />
         </div>
       </Container>
-      <img
+      <Picture
         className={styles.decor}
-        src="/images/home/karaoke-text-decor.svg"
-        alt=""
+        image={{
+          x1: "/images/home/karaoke-text-decor.svg",
+          tablet: "/images/home/karaoke-text-decor_tablet.svg",
+        }}
       />
     </div>
   );

@@ -1,0 +1,97 @@
+@use "@/ui/styles/functions" as *;
+@use "@/ui/styles/mixins" as *;
+@use "@/ui/styles/settings" as *;
+
+.section {
+  padding: 100px 0;
+  background: var(--bg-secondary-4);
+
+  @include mobile {
+    padding: 60px 0;
+  }
+}
+
+.slider {
+  padding: 0 30px;
+
+  @include mobile {
+    padding: 0 16px;
+  }
+}
+
+.slide {
+  width: 430px;
+  height: auto !important;
+
+  @include mobile {
+    width: 280px;
+  }
+}
+
+.slideCard {
+  padding: 30px;
+  display: flex;
+  flex-direction: column;
+  background: var(--bg-primary);
+  height: 100%;
+
+  @include mobile {
+    padding: 16px;
+  }
+}
+
+.slideHeader {
+  margin-bottom: 40px;
+  display: flex;
+  align-items: center;
+  gap: 20px;
+
+  h3 {
+    font-weight: 400;
+    font-size: 20px;
+    line-height: 1;
+  }
+
+  img {
+    width: 30px;
+    height: 30px;
+  }
+
+  @include mobile {
+    margin-bottom: 16px;
+
+    h3 {
+      font-size: 14px;
+    }
+  }
+}
+
+.image {
+  margin-bottom: 40px;
+  display: block;
+  width: 100%;
+  height: auto;
+  aspect-ratio: 508/289;
+
+  @include mobile {
+    aspect-ratio: 218px/160;
+  }
+
+  @include mobile {
+    margin-bottom: 16px;
+  }
+}
+
+.slideText {
+  font-size: 16px;
+  letter-spacing: 0.02em;
+  line-height: 1.2;
+
+  br {
+    display: none;
+  }
+
+  @include mobile {
+    font-size: 14px;
+  }
+}

@@ -27,3 +27,30 @@ export interface FormData {
   social?: string;
   message?: string;
 }
+
+export interface FormLabels {
+  yourNameLabel: string;
+  yourPhoneLabel: string;
+  howToContactYouLabel: string;
+  emailLabel: string;
+  messageLabel?: string;
+  agreementLabel: string;
+  submitButtonLabel: string;
+  closePopupButtonLabel: string;
+  popupTitle: string;
+  popupSubtitle?: string;
+}
+
+export interface NavLink {
+  url: string;
+  title: string;
+}
+
+export interface Seo {
+  title: string;
+  description: string;
+  keywords: string;
+  ogDescription: string;
+  ogTitle: string;
+  ogImage: ImageEntry;
+}
