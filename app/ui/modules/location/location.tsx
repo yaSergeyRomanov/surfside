@@ -2,11 +2,11 @@
 
 import { useEffect } from "react";
 
-import { LocationResponse } from "@/api/location/types";
 import { useAppStore } from "@/store/useAppStore";
 import { Title } from "@/ui/components/title";
 
 import { Map } from "./components/map";
+import { LocationModuleProps } from "./types";
 
 import styles from "./location.module.scss";
 
@@ -14,7 +14,7 @@ export const LocationModule = ({
   pageTitle,
   instructionLabel,
   locations,
-}: LocationResponse) => {
+}: LocationModuleProps) => {
   const updateHeader = useAppStore((state) => state.updateHeader);
 
   useEffect(() => {

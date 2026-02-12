@@ -39,6 +39,8 @@ export interface FormLabels {
   closePopupButtonLabel: string;
   popupTitle: string;
   popupSubtitle?: string;
+  noticeTitleSuccess: string;
+  noticeTitleError: string;
 }
 
 export interface NavLink {

@@ -1,0 +1,267 @@
+@use "@/ui/styles/functions" as *;
+@use "@/ui/styles/mixins" as *;
+@use "@/ui/styles/settings" as *;
+
+.wrapper {
+  padding: 158px 0 300px;
+  background: linear-gradient(
+    to bottom,
+    var(--bg-primary-2),
+    var(--accent-color-4)
+  );
+
+  .title {
+    margin: 0 0 35px;
+    font-size: 32px;
+  }
+
+  @include tablet {
+    padding-top: 150px;
+    padding-bottom: 350px;
+  }
+
+  @include mobile {
+    padding: 100px 0 0;
+    background: none;
+
+    .title {
+      margin: 0 0 16px;
+      font-size: 20px;
+    }
+  }
+}
+
+.header {
+  margin-bottom: -90px;
+
+  @include tablet {
+    margin-bottom: 50px;
+  }
+
+  @include mobile {
+    margin-bottom: 44px;
+  }
+}
+
+.title {
+  width: 100%;
+  max-width: 617px;
+}
+
+.subtitle {
+  display: block;
+  font-family: var(--font-pragmatica);
+  font-weight: 200;
+  font-size: 20px;
+
+  b {
+    font-weight: 400;
+  }
+
+  @include mobile {
+    font-family: var(--font-golos);
+    font-weight: 400;
+    font-size: 18px;
+
+    b {
+      font-weight: 500;
+    }
+  }
+}
+
+.chart {
+  display: flex;
+  flex-direction: column;
+  gap: 1px;
+}
+
+.chartItem {
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  gap: 50px;
+
+  &:nth-child(1) {
+    .chartLine {
+      width: 490px;
+    }
+  }
+
+  &:nth-child(2) {
+    .chartLine {
+      width: 638px;
+    }
+  }
+
+  &:nth-child(3) {
+    .chartLine {
+      width: 733px;
+    }
+  }
+
+  &:nth-child(4),
+  &:nth-child(5) {
+    .chartLine {
+      width: 822px;
+    }
+  }
+
+  &.isActive {
+    .chartTime,
+    .chartTitle,
+    .chartPercent {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    .chartLine {
+      &::before {
+        width: 100%;
+      }
+    }
+  }
+
+  @include tablet {
+    &:nth-child(1) {
+      .chartLine {
+        width: 305px;
+      }
+    }
+
+    &:nth-child(2) {
+      .chartLine {
+        width: 376px;
+      }
+    }
+
+    &:nth-child(3) {
+      .chartLine {
+        width: 438px;
+      }
+    }
+
+    &:nth-child(4),
+    &:nth-child(5) {
+      .chartLine {
+        width: 510px;
+      }
+    }
+  }
+
+  @include mobile {
+    gap: 16px;
+
+    &:nth-child(1) {
+      .chartLine {
+        width: 137px;
+      }
+    }
+
+    &:nth-child(2) {
+      .chartLine {
+        width: 164px;
+      }
+    }
+
+    &:nth-child(3) {
+      .chartLine {
+        width: 195px;
+      }
+    }
+
+    &:nth-child(4),
+    &:nth-child(5) {
+      .chartLine {
+        width: 214px;
+      }
+    }
+  }
+}
+
+.chartTime {
+  font-weight: 200;
+  font-size: 28px;
+  font-family: var(--font-pragmatica);
+  color: var(--text-primary);
+  transform: translateY(20px);
+  opacity: 0;
+  transition: $transition-fast;
+
+  @include tablet {
+    font-size: 24px;
+  }
+
+  @include mobile {
+    font-size: 14px;
+  }
+}
+
+.chartLine {
+  padding: 28px 50px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  color: var(--bg-primary);
+  overflow: hidden;
+  position: relative;
+
+  &::before {
+    content: "";
+    display: block;
+    width: 0;
+    height: 100%;
+    background: url(/images/investment/chart-gradient.svg) no-repeat center;
+    background-size: cover;
+    position: absolute;
+    top: 0;
+    right: 0;
+    transition: $transition-fast;
+  }
+
+  @include tablet {
+    padding: 22px 40px;
+  }
+
+  @include mobile {
+    padding: 12px 16px;
+  }
+}
+
+.chartTitle {
+  font-family: var(--font-pragmatica);
+  font-size: 40px;
+  position: relative;
+  z-index: 1;
+  transform: translateY(20px);
+  opacity: 0;
+  transition: $transition-fast;
+  transition-delay: 0.4s;
+
+  @include tablet {
+    font-size: 26px;
+  }
+
+  @include mobile {
+    font-size: 14px;
+  }
+}
+
+.chartPercent {
+  font-weight: 400;
+  font-size: 32px;
+  opacity: 0.9;
+  position: relative;
+  z-index: 1;
+  transform: translateY(20px);
+  opacity: 0;
+  transition: $transition-fast;
+  transition-delay: 0.4s;
+
+  @include tablet {
+    font-size: 20px;
+  }
+
+  @include mobile {
+    font-size: 12px;
+  }
+}

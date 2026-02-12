@@ -2,7 +2,6 @@
 
 import { useEffect, useState } from "react";
 
-import { ContactsPageResponse } from "@/api/contacts/types";
 import { useAppStore } from "@/store/useAppStore";
 import { AnimFadeUp } from "@/ui/components/anim-fadeup";
 import { Button } from "@/ui/components/button";
@@ -16,6 +15,8 @@ import EmailIcon from "@/ui/svgr-icons/email.svg";
 import PhoneIcon from "@/ui/svgr-icons/phone.svg";
 import TelegramIcon from "@/ui/svgr-icons/telegram.svg";
 import WhatsAppIcon from "@/ui/svgr-icons/whatsapp.svg";
+
+import { ContactsModuleProps } from "./types";
 
 import styles from "./contacts.module.scss";
 
@@ -45,7 +46,7 @@ export const CONTACTS = [
 export const ContactsModule = ({
   pageTitle,
   sendRequestButtonLabel,
-}: ContactsPageResponse) => {
+}: ContactsModuleProps) => {
   const [isShowPopup, setIsShowPopup] = useState(false);
   const updateHeader = useAppStore((state) => state.updateHeader);
 

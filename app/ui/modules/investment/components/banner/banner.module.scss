@@ -1,0 +1,111 @@
+@use "@/ui/styles/functions" as *;
+@use "@/ui/styles/mixins" as *;
+@use "@/ui/styles/settings" as *;
+
+.wrapper {
+  position: relative;
+
+  .title {
+    margin-bottom: 60px;
+    width: 50%;
+    text-align: right;
+    font-size: 40px;
+  }
+
+  @include tablet {
+    .title {
+      margin-bottom: 30px;
+      width: 100%;
+      text-align: initial;
+    }
+  }
+
+  @include mobile {
+    .title {
+      margin-bottom: 20px;
+      font-size: 20px;
+    }
+  }
+}
+
+.bg {
+  display: block;
+
+  img {
+    display: block;
+    width: 100%;
+    height: auto;
+  }
+
+  @include mobile {
+    margin-top: -25px;
+  }
+}
+
+.container {
+  width: 100%;
+  position: absolute;
+  top: 0;
+  left: 0;
+  z-index: 1;
+
+  @include tablet {
+    top: -158px;
+  }
+
+  @include mobile {
+    padding-top: 120px;
+    position: initial;
+    background: linear-gradient(
+      to bottom,
+      var(--bg-primary-2),
+      var(--accent-color-4)
+    );
+  }
+}
+
+.text {
+  margin-left: auto;
+  width: calc(50% - 40px);
+
+  @include tablet {
+    margin-left: 340px;
+    width: initial;
+  }
+
+  @include mobile {
+    margin-left: 0;
+  }
+}
+
+.subtitle {
+  margin-bottom: 30px;
+  font-family: var(--font-pragmatica);
+  font-weight: 200;
+  font-size: 20px;
+
+  b {
+    font-weight: 400;
+  }
+
+  p {
+    margin: 0;
+
+    &:not(:last-child) {
+      margin-bottom: 20px;
+    }
+  }
+
+  @include mobile {
+    margin-bottom: 20px;
+    font-size: 16px;
+
+    p {
+      margin: 0;
+
+      &:not(:last-child) {
+        margin-bottom: 16px;
+      }
+    }
+  }
+}

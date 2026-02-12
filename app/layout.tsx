@@ -112,7 +112,7 @@ export default async function RootLayout({
           src="https://my.glagol.ai/static/office/glagol_chat_loader.min.js"
           data-login="hotels.at.glagol.ai"
           data-project="surf_bot"
-          data-token={config.token}
+          data-token={config?.token}
           strategy="afterInteractive"
         />
       </body>

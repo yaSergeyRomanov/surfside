@@ -13,7 +13,7 @@ export const getLocationData = async (
 ): Promise<LocationPageData> => {
   const query = qs.stringify(
     {
-      populate: ["locations", "locations.images"],
+      populate: ["locations", "locations.images", "seo", "seo.ogImage"],
       ...(locale && { locale }),
     },
     {

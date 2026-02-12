@@ -13,6 +13,7 @@ import { PopupForm } from "@/ui/components/popup/components/popup-form";
 import { Title } from "@/ui/components/title";
 
 import { UnitsCard } from "./components/units-card";
+import { UnitsModuleProps } from "./types";
 
 import styles from "./units.module.scss";
 
@@ -20,7 +21,7 @@ export const UnitsModule = ({
   units,
   pageTitle,
   moreInfoButtonLabel,
-}: UnitsPageResponse) => {
+}: UnitsModuleProps) => {
   const [isShowPopup, setIsShowPopup] = useState(false);
   const updateHeader = useAppStore((state) => state.updateHeader);
   const [isMounted, setIsMounted] = useState(false);

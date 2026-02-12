@@ -13,7 +13,7 @@ export const getContactsData = async (
 ): Promise<ContactsPageData> => {
   const query = qs.stringify(
     {
-      populate: "*",
+      populate: ["seo", "seo.ogImage"],
       ...(locale && { locale }),
     },
     {

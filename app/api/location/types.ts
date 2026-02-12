@@ -1,13 +1,15 @@
+import { Seo } from "@/types/general";
 import { LocationCardProps } from "@/ui/modules/location/components/location-card/types";
 
 export interface LocationPageData {
-  pageData: LocationResponse;
+  pageData: LocationPageResponse;
 }
 
-export interface LocationResponse {
+export interface LocationPageResponse {
   locations: LocationData[];
   pageTitle: string;
   instructionLabel: string;
+  seo: Seo;
 }
 
 export interface LocationData extends LocationCardProps {

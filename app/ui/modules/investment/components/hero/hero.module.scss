@@ -1,0 +1,84 @@
+@use "@/ui/styles/functions" as *;
+@use "@/ui/styles/mixins" as *;
+@use "@/ui/styles/settings" as *;
+
+.wrapper {
+  padding-bottom: 150px;
+  width: 100%;
+  height: 100vh;
+  position: relative;
+
+  &::after {
+    content: "";
+    display: block;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(
+      to bottom,
+      fade(var(--text-primary-3), 0.4),
+      fade(var(--text-primary-3), 0)
+    );
+    position: absolute;
+    top: 0;
+    left: 0;
+    z-index: 1;
+  }
+
+  .button {
+    color: var(--bg-primary);
+  }
+
+  @include tablet {
+    padding: 200px 0 145px;
+    height: auto;
+  }
+
+  @include mobile {
+    padding: 110px 0 60px;
+  }
+}
+
+.container {
+  position: relative;
+  z-index: 2;
+}
+
+.text {
+  margin-top: auto;
+}
+
+.title {
+  margin-bottom: 40px;
+  font-family: var(--font-pragmatica);
+  font-weight: 400;
+  font-size: 20px;
+  color: var(--bg-primary);
+  text-transform: uppercase;
+  line-height: 1.3;
+
+  @include mobile {
+    width: 100%;
+    max-width: 400px;
+    text-transform: initial;
+
+    br {
+      display: none;
+    }
+  }
+}
+
+.bg {
+  display: block;
+  width: 100%;
+  height: 100%;
+  position: absolute;
+  top: 0;
+  left: 0;
+
+  img {
+    display: block;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+  }
+}

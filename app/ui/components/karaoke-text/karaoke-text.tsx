@@ -12,7 +12,7 @@ import { KaraokeTextProps } from "./types";
 
 import styles from "./karaoke-text.module.scss";
 
-export const KaraokeText = ({ text, className }: KaraokeTextProps) => {
+export const KaraokeText = ({ text, className, theme }: KaraokeTextProps) => {
   const targetRef = useRef<HTMLSpanElement>(null);
   const sectionRef = useRef<HTMLDivElement>(null);
   const animationRef = useRef<gsap.core.Timeline | null>(null);
@@ -116,8 +116,8 @@ export const KaraokeText = ({ text, className }: KaraokeTextProps) => {
     animationRef.current = gsap.timeline({
       scrollTrigger: {
         trigger: section,
-        start: "top 20%",
-        end: "bottom 80%",
+        start: "top 5%",
+        end: "bottom 70%",
         scrub: true,
         pin: false,
         invalidateOnRefresh: true,
@@ -180,7 +180,12 @@ export const KaraokeText = ({ text, className }: KaraokeTextProps) => {
   }, [text]);
 
   return (
-    <div className={clsx(styles.section, className)} ref={sectionRef}>
+    <div
+      className={clsx(styles.section, className, {
+        [styles[`section-theme-${theme}`]]: theme,
+      })}
+      ref={sectionRef}
+    >
       <Container isHigh>
         <div className={styles.wrapper}>
           <span
@@ -190,13 +195,15 @@ export const KaraokeText = ({ text, className }: KaraokeTextProps) => {
           />
         </div>
       </Container>
-      <Picture
-        className={styles.decor}
-        image={{
-          x1: "/images/home/karaoke-text-decor.svg",
-          tablet: "/images/home/karaoke-text-decor_tablet.svg",
-        }}
-      />
+      {theme === "blue" && (
+        <Picture
+          className={styles.decor}
+          image={{
+            x1: "/images/home/karaoke-text-decor.svg",
+            tablet: "/images/home/karaoke-text-decor_tablet.svg",
+          }}
+        />
+      )}
     </div>
   );
 };

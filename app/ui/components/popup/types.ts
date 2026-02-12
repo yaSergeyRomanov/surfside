@@ -4,5 +4,5 @@ export interface PopupProps {
   isShow: boolean;
   children: ReactNode;
   triggerButton?: ReactNode;
-  onClose: () => void;
+  onClose?: () => void;
 }

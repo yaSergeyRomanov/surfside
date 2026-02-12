@@ -133,7 +133,11 @@ export const About = ({
       </ul>
       <Container>
         <AnimFadeUp>
-          <a className={styles.projectsLink} href={projectButtonMore.url}>
+          <a
+            className={styles.projectsLink}
+            href={projectButtonMore.url}
+            target="_blank"
+          >
             <span>{projectButtonMore.title}</span>
           </a>
         </AnimFadeUp>

@@ -8,8 +8,6 @@ import { About } from "./components/about";
 import { Benefits } from "./components/benefits";
 import { Hero } from "./components/hero";
 import { Location } from "./components/location";
-import { useAppStore } from "@/store/useAppStore";
-import { useEffect } from "react";
 
 export const HomeModule = ({ pageData }: HomePageData) => {
   return (
@@ -24,7 +22,7 @@ export const HomeModule = ({ pageData }: HomePageData) => {
         firstSlideTitle={pageData.marquee.firstSlideTitle}
         secondSlideTitle={pageData.marquee.secondSlideTitle}
       />
-      <KaraokeText text={pageData.aboutText} />
+      <KaraokeText text={pageData.aboutText} theme="blue" />
       <Location
         title={pageData.locationSectionTitle}
         text={pageData.locationSectionDescription}

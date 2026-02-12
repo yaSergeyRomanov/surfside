@@ -1,0 +1,75 @@
+@use "@/ui/styles/functions" as *;
+@use "@/ui/styles/mixins" as *;
+@use "@/ui/styles/settings" as *;
+
+.section {
+  padding-bottom: 148px;
+
+  @include tablet {
+    padding-bottom: 0;
+  }
+}
+
+.numbers {
+  display: flex;
+  justify-content: center;
+  gap: 75px;
+
+  @include tablet {
+    flex-wrap: wrap;
+    gap: 50px;
+  }
+
+  @include mobile {
+    flex-direction: column;
+    gap: 0;
+  }
+}
+
+.item {
+  @include tablet {
+    width: calc(50% - 25px);
+  }
+
+  @include mobile {
+    padding: 30px 0;
+    width: 100%;
+    border-bottom: 1px solid fade(var(--text-primary-2), 0.1);
+
+    &:first-child {
+      border-top: 1px solid fade(var(--text-primary-2), 0.1);
+    }
+  }
+}
+
+.number {
+  margin: 0 0 20px;
+  display: block;
+  font-size: 48px;
+  color: var(--text-secondary-4);
+  text-align: center;
+  line-height: 1;
+
+  span {
+    font-size: 74px;
+  }
+
+  @include mobile {
+    margin-bottom: 10px;
+    font-size: 30px;
+    text-align: left;
+  }
+}
+
+.description {
+  margin: 0;
+  display: block;
+  font-weight: 400;
+  font-size: 20px;
+  text-align: center;
+
+  @include mobile {
+    font-size: 16px;
+    text-align: left;
+  }
+}

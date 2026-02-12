@@ -1,6 +1,9 @@
 import { getUnitsData } from "@/api/units";
 import { LayoutShortFooter } from "@/ui/layouts/layout-short-footer";
 import { UnitsModule } from "@/ui/modules/units";
+import { generateSeoMetadata } from "@/utils/generateSeoMetadata";
+
+export const generateMetadata = generateSeoMetadata(getUnitsData);
 
 const Units = async ({ params }: { params: Promise<{ locale: string }> }) => {
   const { locale } = await params;

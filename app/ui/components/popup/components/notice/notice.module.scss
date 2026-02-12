@@ -1,0 +1,58 @@
+@use "@/ui/styles/functions" as *;
+@use "@/ui/styles/mixins" as *;
+@use "@/ui/styles/settings" as *;
+
+.notice {
+  padding: 16px 10px;
+  width: 100%;
+  max-width: 300px;
+  background: var(--bg-primary);
+  border: 2px solid transparent;
+  border-radius: 6px;
+  position: fixed;
+  bottom: 0;
+  opacity: 0;
+  left: 50%;
+  transform: translateX(-50%);
+  z-index: 1001;
+  transition: $transition-fast;
+
+  &.isShow {
+    animation: animNotice 0.6s ease-out forwards;
+  }
+}
+
+@keyframes animNotice {
+  from {
+    bottom: 0;
+    opacity: 0;
+  }
+  to {
+    bottom: 30px;
+    opacity: 1;
+  }
+}
+
+.theme-success {
+  border-color: var(--green-color);
+}
+
+.theme-error {
+  border-color: var(--error-color);
+}
+
+.title {
+  margin: 0;
+  display: block;
+  font-family: var(--font-pragmatica);
+  font-weight: 400;
+  font-size: 18px;
+  text-align: center;
+  line-height: 1.1;
+  letter-spacing: 0.02em;
+}
+
+.text {
+  display: block;
+  font-size: 18px;
+}

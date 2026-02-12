@@ -1,0 +1,31 @@
+@use "@/ui/styles/functions" as *;
+@use "@/ui/styles/mixins" as *;
+@use "@/ui/styles/settings" as *;
+
+.wrapper {
+  display: flex;
+  flex-wrap: wrap;
+  background: var(--accent-color-3);
+  gap: 10px;
+
+  @include tablet {
+    flex-direction: column;
+    gap: 0;
+  }
+}
+
+.col {
+  width: calc(50% - 5px);
+
+  @include tablet {
+    width: 100%;
+
+    &:nth-child(3) {
+      order: 4;
+    }
+
+    &:nth-child(4) {
+      order: 3;
+    }
+  }
+}

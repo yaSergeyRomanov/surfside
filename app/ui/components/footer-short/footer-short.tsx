@@ -1,9 +1,13 @@
-import { useAppStore } from "@/store/useAppStore";
-import styles from "./footer-short.module.scss";
-import { Container } from "../container";
-import { getActiveLanguage } from "@/utils/getActiveLanguage";
 import { usePathname } from "next/navigation";
+
+import { useAppStore } from "@/store/useAppStore";
+import { getActiveLanguage } from "@/utils/getActiveLanguage";
+
+import { Container } from "../container";
+
 import { FooterShortProps } from "./types";
+
+import styles from "./footer-short.module.scss";
 
 const LANG_LINKS = [
   {
@@ -16,7 +20,7 @@ const LANG_LINKS = [
   },
   {
     title: "FR",
-    url: "/fr/",
+    url: "/fr-FR/",
   },
 ];
 

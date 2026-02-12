@@ -11,7 +11,13 @@ const { apiEndpoint, authToken } = CONFIG;
 export const getUnitsData = async (locale?: string): Promise<UnitsPageData> => {
   const query = qs.stringify(
     {
-      populate: ["units", "units.images", "units.benefits"],
+      populate: [
+        "units",
+        "units.images",
+        "units.benefits",
+        "seo",
+        "seo.ogImage",
+      ],
       ...(locale && { locale }),
     },
     {

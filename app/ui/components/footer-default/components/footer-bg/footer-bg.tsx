@@ -45,7 +45,7 @@ const LANG_LINKS = [
   },
   {
     title: "FR",
-    url: "/fr/",
+    url: "/fr-FR/",
   },
 ];
 

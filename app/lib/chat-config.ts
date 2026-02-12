@@ -5,7 +5,7 @@ export const chatConfig = {
   en: {
     token: "rfpwfpwejfwie23423rwerjfn_en",
   },
-  fr: {
+  "fr-FR": {
     token: "rfpwfpwejfwie23423rwerjfn_fr",
   },
 } as const;

@@ -1,0 +1,100 @@
+@use "@/ui/styles/functions" as *;
+@use "@/ui/styles/mixins" as *;
+@use "@/ui/styles/settings" as *;
+
+.slider {
+  padding: 35px 0;
+  width: 100%;
+  background: var(--accent-color-3);
+  overflow: hidden;
+
+  @include mobile {
+    padding: 26px 0;
+  }
+}
+
+.marqueeTrack {
+  display: flex;
+  animation: marquee 60s linear infinite;
+  width: max-content;
+}
+
+.marqueeLeft {
+  animation-name: marqueeLeft;
+}
+
+.marqueeRight {
+  animation-name: marqueeRight;
+}
+
+@keyframes marqueeLeft {
+  0% {
+    transform: translateX(0);
+  }
+  100% {
+    transform: translateX(-50%);
+  }
+}
+
+@keyframes marqueeRight {
+  0% {
+    transform: translateX(-50%);
+  }
+  100% {
+    transform: translateX(0);
+  }
+}
+
+.slideGroup {
+  display: flex;
+}
+
+.slide {
+  padding: 0 75px;
+  width: max-content;
+  font-family: var(--font-pragmatica);
+  font-weight: 200;
+  font-size: 26px;
+  line-height: 1;
+  letter-spacing: 0.02em;
+  color: var(--text-primary);
+
+  @include mobile {
+    padding: 0 35px;
+    font-size: 18px;
+  }
+}
+
+.title {
+  margin: auto 0;
+}
+
+.percent {
+  width: 87px;
+  position: relative;
+
+  img {
+    display: block;
+    width: 100%;
+    height: auto;
+  }
+
+  @include mobile {
+    width: 48px;
+    height: 48px;
+  }
+}
+
+.percentNum {
+  font-size: 22px;
+  line-height: 1;
+  display: block;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+
+  @include mobile {
+    font-size: 12px;
+  }
+}
