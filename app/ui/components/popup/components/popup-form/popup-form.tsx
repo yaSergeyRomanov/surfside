@@ -48,7 +48,7 @@ export const PopupForm = ({ onClose }: PopupFormProps) => {
         setNotice({
           isShow: true,
           theme: "success",
-          title: formLabels.noticeTitleSuccess,
+          title: formLabels.noticeTitleSuccess || "",
         });
 
         setTimeout(() => {
@@ -62,7 +62,7 @@ export const PopupForm = ({ onClose }: PopupFormProps) => {
       setNotice({
         isShow: true,
         theme: "error",
-        title: formLabels.noticeTitleError,
+        title: formLabels.noticeTitleError || "",
       });
 
       setTimeout(() => {

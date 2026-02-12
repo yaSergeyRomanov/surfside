@@ -42,7 +42,7 @@ export const FooterForm = ({ formLabels }: { formLabels?: FormLabels }) => {
         setNotice({
           isShow: true,
           theme: "success",
-          title: formLabels.noticeTitleSuccess,
+          title: formLabels.noticeTitleSuccess || "",
         });
 
         setTimeout(() => {
@@ -55,7 +55,7 @@ export const FooterForm = ({ formLabels }: { formLabels?: FormLabels }) => {
       setNotice({
         isShow: true,
         theme: "error",
-        title: formLabels.noticeTitleError,
+        title: formLabels.noticeTitleError || "",
       });
 
       setTimeout(() => {
