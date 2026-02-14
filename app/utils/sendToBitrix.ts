@@ -15,7 +15,7 @@ export const sendToBitrix = async (
   formData: FormData,
 ): Promise<BitrixResponse> => {
   try {
-    const response = await fetch("/api/send-to-bitrix", {
+    const response = await fetch("/bitrix-proxy", {
       method: "POST",
       headers: {
         "Content-Type": "application/json",

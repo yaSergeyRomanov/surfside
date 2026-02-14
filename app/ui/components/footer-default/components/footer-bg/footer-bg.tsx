@@ -56,7 +56,10 @@ export const FooterBg = ({ navLinks }: FooterBgProps) => {
     <div className={styles.wrapper}>
       <Picture
         className={styles.image}
-        image={{ x1: "/images/footer-bg.webp" }}
+        image={{
+          x1: "/images/footer-bg.webp",
+          mobile: "/images/footer-bg_mobile.webp",
+        }}
         width={2880}
         height={1920}
       />

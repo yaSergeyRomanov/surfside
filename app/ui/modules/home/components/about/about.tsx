@@ -1,8 +1,8 @@
 import clsx from "clsx";
-import Link from "next/link";
 
 import { AnimFadeUp } from "@/ui/components/anim-fadeup";
 import { Container } from "@/ui/components/container";
+import { Picture } from "@/ui/components/picture";
 import { Section } from "@/ui/components/section";
 import { Title } from "@/ui/components/title";
 
@@ -50,10 +50,13 @@ export const About = ({
         </li>
 
         <li className={clsx(styles.card, styles.hasImage)}>
-          <img
+          <Picture
             className={styles.image}
-            src="/images/home/about-1.webp"
-            alt="Surfside villas"
+            image={{
+              x1: "/images/home/about-1.webp",
+              mobile: "/images/home/about-1_mobile.webp",
+              alt: "Surfside villas",
+            }}
             width={720}
             height={828}
           />
@@ -122,10 +125,13 @@ export const About = ({
           </div>
         </li>
         <li className={clsx(styles.card, styles.hasImage)}>
-          <img
+          <Picture
             className={styles.image}
-            src="/images/home/about-2.webp"
-            alt="Surfside bedroom"
+            image={{
+              x1: "/images/home/about-1.webp",
+              mobile: "/images/home/about-2_mobile.webp",
+              alt: "Surfside bedroom",
+            }}
             width={720}
             height={828}
           />

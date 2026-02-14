@@ -1,4 +1,5 @@
 import { AnimFadeUp } from "@/ui/components/anim-fadeup";
+import { Picture } from "@/ui/components/picture";
 import { Section } from "@/ui/components/section";
 
 import { BenefitsProps } from "./types";
@@ -32,12 +33,15 @@ export const Benefits = ({ benefits }: BenefitsProps) => {
           ))}
         </ul>
         <div className={styles.col}>
-          <img
+          <Picture
             className={styles.image}
+            image={{
+              x1: "/images/home/benefits-image.webp",
+              mobile: "/images/home/benefits-image_mobile.webp",
+              alt: "Surfside brand",
+            }}
             width={1440}
             height={1504}
-            src="/images/home/benefits-image.webp"
-            alt="Surfside brand"
           />
         </div>
       </div>

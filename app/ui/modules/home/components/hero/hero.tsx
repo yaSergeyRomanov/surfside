@@ -18,18 +18,23 @@ import styles from "./hero.module.scss";
 const HERO_IMAGES = [
   {
     x1: "/images/home/hero-1.webp",
+    mobile: "/images/home/hero-1_mobile.webp",
   },
   {
     x1: "/images/home/hero-2.webp",
+    mobile: "/images/home/hero-2_mobile.webp",
   },
   {
     x1: "/images/home/hero-3.webp",
+    mobile: "/images/home/hero-3_mobile.webp",
   },
   {
     x1: "/images/home/hero-4.webp",
+    mobile: "/images/home/hero-4_mobile.webp",
   },
   {
     x1: "/images/home/hero-5.webp",
+    mobile: "/images/home/hero-5_mobile.webp",
   },
 ];
 
