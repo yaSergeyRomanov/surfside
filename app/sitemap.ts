@@ -11,7 +11,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
       alternates: {
         languages: {
           en: `${BASE_URL}/en`,
-          fr: `${BASE_URL}/fr_FR`,
+          fr: `${BASE_URL}/fr-FR`,
         },
       },
     },
@@ -21,7 +21,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
       alternates: {
         languages: {
           en: `${BASE_URL}/en/about`,
-          fr: `${BASE_URL}/fr_FR/about`,
+          fr: `${BASE_URL}/fr-FR/about`,
         },
       },
     },
@@ -31,7 +31,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
       alternates: {
         languages: {
           en: `${BASE_URL}/en/contacts`,
-          fr: `${BASE_URL}/fr_FR/contacts`,
+          fr: `${BASE_URL}/fr-FR/contacts`,
         },
       },
     },
@@ -41,7 +41,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
       alternates: {
         languages: {
           en: `${BASE_URL}/en/location`,
-          fr: `${BASE_URL}/fr_FR/location`,
+          fr: `${BASE_URL}/fr-FR/location`,
         },
       },
     },
@@ -51,7 +51,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
       alternates: {
         languages: {
           en: `${BASE_URL}/en/units`,
-          fr: `${BASE_URL}/fr_FR/units`,
+          fr: `${BASE_URL}/fr-FR/units`,
         },
       },
     },
@@ -61,7 +61,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
       alternates: {
         languages: {
           en: `${BASE_URL}/en/investment`,
-          fr: `${BASE_URL}/fr_FR/investment`,
+          fr: `${BASE_URL}/fr-FR/investment`,
         },
       },
     },
