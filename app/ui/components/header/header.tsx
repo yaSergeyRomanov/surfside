@@ -20,7 +20,7 @@ export const Header = () => {
   const isColoredBlue = useAppStore((state) => state.isColoredBlue);
   const locale = useAppStore((state) => state.locale);
 
-  const { data } = useHeaderData(locale || "ru");
+  const { data } = useHeaderData(locale || "en");
   const [isSticky, setIsSticky] = useState(false);
   const [isMounted, setIsMounted] = useState(false);
   const headerRef = useRef<HTMLDivElement>(null);

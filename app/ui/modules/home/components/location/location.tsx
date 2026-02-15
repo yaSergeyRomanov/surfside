@@ -46,7 +46,9 @@ export const Location = ({ title, text, button }: LocationProps) => {
       <img
         className={styles.mapImage}
         src="/images/home/location-map.svg"
-        alt=""
+        alt="Map image"
+        width={806}
+        height={635}
       />
     </Section>
   );

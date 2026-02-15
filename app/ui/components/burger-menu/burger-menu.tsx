@@ -41,12 +41,12 @@ const SOCIAL_LINKS = [
 
 const LANG_LINKS = [
   {
-    title: "RU",
+    title: "EN",
     url: "/",
   },
   {
-    title: "EN",
-    url: "/en/",
+    title: "RU",
+    url: "/ru/",
   },
   {
     title: "FR",

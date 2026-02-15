@@ -3,7 +3,7 @@ export const getActiveLanguage = (langUrl: string, pathName: string) => {
     return (
       pathName === "/" ||
       pathName === "" ||
-      (!pathName.startsWith("/en") && !pathName.startsWith("/fr"))
+      (!pathName.startsWith("/ru") && !pathName.startsWith("/fr"))
     );
   }
 

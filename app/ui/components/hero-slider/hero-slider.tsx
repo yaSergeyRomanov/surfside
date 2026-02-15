@@ -31,6 +31,8 @@ export const HeroSlider = ({ images }: HeroSliderProps) => {
               mobile: item.mobile,
               alt: `Hero slide image ${index}`,
             }}
+            width={722}
+            height={750}
           />
         </SwiperSlide>
       ))}

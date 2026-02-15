@@ -100,7 +100,7 @@ export default async function RootLayout({
 }>) {
   const headersList = await headers();
   const locale = (headersList.get("x-locale") ||
-    "ru") as keyof typeof chatConfig;
+    "en") as keyof typeof chatConfig;
   const config = chatConfig[locale];
 
   return (

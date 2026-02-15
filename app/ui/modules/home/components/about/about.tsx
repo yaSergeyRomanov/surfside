@@ -57,8 +57,8 @@ export const About = ({
               mobile: "/images/home/about-1_mobile.webp",
               alt: "Surfside villas",
             }}
-            width={720}
-            height={828}
+            width={360}
+            height={414}
           />
         </li>
 
@@ -132,8 +132,8 @@ export const About = ({
               mobile: "/images/home/about-2_mobile.webp",
               alt: "Surfside bedroom",
             }}
-            width={720}
-            height={828}
+            width={360}
+            height={414}
           />
         </li>
       </ul>

@@ -25,7 +25,7 @@ export function middleware(request: NextRequest) {
     pathname === "/" ||
     !pathname.startsWith("/" + locales.join("|"))
   ) {
-    response.headers.set("x-locale", "ru");
+    response.headers.set("x-locale", "en");
   }
 
   return response;

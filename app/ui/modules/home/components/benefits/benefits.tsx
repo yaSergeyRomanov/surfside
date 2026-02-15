@@ -40,8 +40,8 @@ export const Benefits = ({ benefits }: BenefitsProps) => {
               mobile: "/images/home/benefits-image_mobile.webp",
               alt: "Surfside brand",
             }}
-            width={1440}
-            height={1504}
+            width={729}
+            height={752}
           />
         </div>
       </div>

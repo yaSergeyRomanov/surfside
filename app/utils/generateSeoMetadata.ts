@@ -29,12 +29,12 @@ export function generateSeoMetadata(
     const { pageData } = await getPageData(locale);
     const SEO = pageData.seo;
 
-    let ogLocale = "ru_RU";
+    let ogLocale = "en_EN";
 
     if (locale) {
       switch (locale) {
-        case "en":
-          ogLocale = "en_EN";
+        case "ru":
+          ogLocale = "ru_RU";
           break;
         case "fr":
           ogLocale = "fr_FR";

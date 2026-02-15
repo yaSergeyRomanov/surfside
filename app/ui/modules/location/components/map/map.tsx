@@ -38,6 +38,7 @@ export const Map = ({ locations }: { locations: LocationData[] }) => {
   } | null>(null);
 
   const [loading, setLoading] = useState(true);
+  const [mapReady, setMapReady] = useState(false);
   const [error, setError] = useState<string | null>(null);
 
   const [activeMarkerId, setActiveMarkerId] = useState<number | null>(null);
@@ -45,6 +46,11 @@ export const Map = ({ locations }: { locations: LocationData[] }) => {
 
   const [isMounted, setIsMounted] = useState(false);
   const { width } = useWindowSize();
+
+  const handleMapReady = () => {
+    setMapReady(true);
+    setLoading(false);
+  };
 
   useEffect(() => {
     setIsMounted(true);
@@ -145,9 +151,11 @@ export const Map = ({ locations }: { locations: LocationData[] }) => {
     reactify,
   } = components;
 
+  const showPreloader = loading || !mapReady;
+
   return (
     <>
-      <Preloader isActive={!loading} theme={"blue"} />
+      <Preloader isActive={showPreloader} theme={"blue"} />
       <Section className={styles.wrapper} Tag="section">
         <div className={styles.map}>
           <YMap location={reactify.useDefault(startLocation)} mode="vector">

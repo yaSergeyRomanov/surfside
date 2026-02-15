@@ -36,12 +36,12 @@ const SOCIAL_LINKS = [
 
 const LANG_LINKS = [
   {
-    title: "RU",
+    title: "EN",
     url: "/",
   },
   {
-    title: "EN",
-    url: "/en/",
+    title: "RU",
+    url: "/ru/",
   },
   {
     title: "FR",
@@ -60,8 +60,8 @@ export const FooterBg = ({ navLinks }: FooterBgProps) => {
           x1: "/images/footer-bg.webp",
           mobile: "/images/footer-bg_mobile.webp",
         }}
-        width={2880}
-        height={1920}
+        width={1440}
+        height={960}
       />
 
       <Container className={styles.bottom}>

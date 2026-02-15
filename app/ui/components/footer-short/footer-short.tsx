@@ -11,12 +11,12 @@ import styles from "./footer-short.module.scss";
 
 const LANG_LINKS = [
   {
-    title: "RU",
+    title: "EN",
     url: "/",
   },
   {
-    title: "EN",
-    url: "/en/",
+    title: "RU",
+    url: "/ru/",
   },
   {
     title: "FR",
