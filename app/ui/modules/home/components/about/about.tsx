@@ -128,7 +128,7 @@ export const About = ({
           <Picture
             className={styles.image}
             image={{
-              x1: "/images/home/about-1.webp",
+              x1: "/images/home/about-2.webp",
               mobile: "/images/home/about-2_mobile.webp",
               alt: "Surfside bedroom",
             }}
