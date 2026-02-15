@@ -1,0 +1,8 @@
+User-agent: *
+Disallow: /admin/
+Disallow: /cgi-bin/
+Disallow: /cache/
+Disallow: /tmp/
+
+Sitemap: https://booking.surfsidebali.com/sitemap.xml
+Host: https://booking.surfsidebali.com/
