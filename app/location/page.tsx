@@ -9,13 +9,15 @@ const Location = async () => {
   const { pageData } = await getLocationData();
 
   return (
-    <LayoutShortFooter>
-      <LocationModule
-        locations={pageData.locations}
-        pageTitle={pageData.pageTitle}
-        instructionLabel={pageData.instructionLabel}
-      />
-    </LayoutShortFooter>
+    <>
+      <LayoutShortFooter>
+        <LocationModule
+          locations={pageData.locations}
+          pageTitle={pageData.pageTitle}
+          instructionLabel={pageData.instructionLabel}
+        />
+      </LayoutShortFooter>
+    </>
   );
 };
 

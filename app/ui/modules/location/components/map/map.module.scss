@@ -29,10 +29,20 @@
 .markerWrapper {
   position: relative;
   transform: translate(-50%, -50%);
+  cursor: pointer;
+
+  &.isShowTooltip {
+    .tooltip {
+      opacity: 1;
+
+      img {
+        transform: translateY(0);
+      }
+    }
+  }
 
   &.isInteract {
     opacity: 0.6;
-    cursor: pointer;
     transition: $transition-fast;
 
     @media (hover: hover) {
@@ -56,6 +66,71 @@
       width: 28px;
       height: 28px;
     }
+  }
+}
+
+.tooltip {
+  position: absolute;
+  top: -70px;
+  left: 50%;
+  transform: translateX(-50%);
+  pointer-events: none;
+  opacity: 0;
+  transition: $transition-fast;
+
+  img {
+    display: block;
+    min-width: 144px;
+    height: auto;
+    transition: $transition-fast;
+    transform: translateY(5px);
+  }
+
+  @include mobile {
+    top: -60px;
+
+    img {
+      min-width: 120px;
+    }
+  }
+}
+
+.tooltipFoot {
+  width: 1px;
+  height: 40px;
+  position: absolute;
+  top: 20px;
+  left: 50%;
+  transform: translateX(-50%);
+  pointer-events: none;
+  overflow: hidden;
+
+  &::before {
+    content: "";
+    display: block;
+    border-right: 1px dashed var(--bg-primary);
+    height: 300%;
+    position: absolute;
+    top: 0;
+    left: 0;
+    animation: animTooltipFoot 10s ease-out infinite;
+  }
+
+  @include mobile {
+    height: 30px;
+    top: 20px;
+  }
+}
+
+@keyframes animTooltipFoot {
+  0% {
+    top: 0;
+  }
+  50% {
+    top: -150%;
+  }
+  100% {
+    top: 0;
   }
 }
 

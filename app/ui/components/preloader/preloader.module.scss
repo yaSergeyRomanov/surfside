@@ -15,7 +15,7 @@
   right: 0;
   z-index: 1000;
 
-  &.isActive {
+  &.isHidden {
     animation: animPreloader 1.3s ease-out forwards;
     animation-delay: 1s;
     pointer-events: none;

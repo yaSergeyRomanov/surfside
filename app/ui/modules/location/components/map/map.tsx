@@ -5,8 +5,8 @@ import React, { useEffect, useRef, useState } from "react";
 import ReactDOM, { createPortal } from "react-dom";
 
 import { LocationData } from "@/api/location/types";
+import { useClickOutside } from "@/hooks/useClickOutside";
 import { useWindowSize } from "@/hooks/useWindowSize";
-import { Preloader } from "@/ui/components/preloader";
 import { Section } from "@/ui/components/section";
 
 import { LocationCard } from "../location-card";
@@ -28,7 +28,13 @@ const toYandexCoordinates = (latLng: [number, number]): [number, number] => {
   return [latLng[1], latLng[0]];
 };
 
-export const Map = ({ locations }: { locations: LocationData[] }) => {
+export const Map = ({
+  locations,
+  onLoading,
+}: {
+  locations: LocationData[];
+  onLoading: () => void;
+}) => {
   const [components, setComponents] = useState<{
     YMap: React.ComponentType<YMapComponentProps>;
     YMapDefaultSchemeLayer: React.ComponentType<YMapDefaultSchemeLayerProps>;
@@ -37,18 +43,14 @@ export const Map = ({ locations }: { locations: LocationData[] }) => {
     reactify: ReactifyInstance;
   } | null>(null);
 
-  const [loading, setLoading] = useState(true);
   const [error, setError] = useState<string | null>(null);
-
+  const [showTooltip, setShowTooltip] = useState(false);
+  const mainMarkerRef = useRef<HTMLDivElement>(null);
   const [activeMarkerId, setActiveMarkerId] = useState<number | null>(null);
   const cardRef = useRef<HTMLDivElement>(null);
-
-  const [isMounted, setIsMounted] = useState(false);
   const { width } = useWindowSize();
 
   useEffect(() => {
-    setIsMounted(true);
-
     const loadMap = async () => {
       try {
         if (!window.ymaps3) {
@@ -83,38 +85,30 @@ export const Map = ({ locations }: { locations: LocationData[] }) => {
           YMapMarker,
         } = reactify.module(window.ymaps3);
 
-        if (isMounted) {
-          setComponents({
-            YMap,
-            YMapDefaultSchemeLayer,
-            YMapDefaultFeaturesLayer,
-            YMapMarker,
-            reactify,
-          });
+        setComponents({
+          YMap,
+          YMapDefaultSchemeLayer,
+          YMapDefaultFeaturesLayer,
+          YMapMarker,
+          reactify,
+        });
 
-          setTimeout(() => setLoading(false), 2000);
-        }
+        setTimeout(() => onLoading(), 2000);
       } catch (err) {
         console.error("Error:", err);
-        if (isMounted) {
-          setError("Ошибка загрузки карты");
-          setLoading(false);
-        }
+        setError("Ошибка загрузки карты");
+        onLoading();
       }
     };
 
     loadMap();
-
-    return () => {
-      setIsMounted(false);
-    };
-  }, [isMounted]);
+  }, []);
 
   let defaultCoords = [-8.816273, 115.092538] as [number, number];
 
-  if (isMounted && width >= 768 && width <= 1279) {
+  if (width >= 768 && width <= 1279) {
     defaultCoords = [-8.815273, 115.090538];
-  } else if (isMounted && width <= 767) {
+  } else if (width <= 767) {
     defaultCoords = [-8.816273, 115.089538];
   }
 
@@ -126,6 +120,12 @@ export const Map = ({ locations }: { locations: LocationData[] }) => {
   const handleCloseLocationCard = () => {
     setActiveMarkerId(null);
   };
+
+  const handleMainMarkerClick = () => {
+    setShowTooltip((prev) => !prev);
+  };
+
+  useClickOutside(mainMarkerRef, () => setShowTooltip(false));
 
   const handleMarkerClick = (id: number) => {
     setActiveMarkerId((prevId) => {
@@ -148,7 +148,6 @@ export const Map = ({ locations }: { locations: LocationData[] }) => {
 
   return (
     <>
-      <Preloader isActive={!loading} theme={"blue"} />
       <Section className={styles.wrapper} Tag="section">
         <div className={styles.map}>
           <YMap location={reactify.useDefault(startLocation)} mode="vector">
@@ -160,7 +159,17 @@ export const Map = ({ locations }: { locations: LocationData[] }) => {
               )}
               draggable={false}
             >
-              <div className={styles.markerWrapper}>
+              <div
+                className={clsx(styles.markerWrapper, {
+                  [styles.isShowTooltip]: showTooltip,
+                })}
+                onClick={handleMainMarkerClick}
+                ref={mainMarkerRef}
+              >
+                <div className={styles.tooltip}>
+                  <img src="/images/surfside-tooltip.svg" alt="" />
+                  <div className={styles.tooltipFoot} />
+                </div>
                 <div className={styles.pin}>
                   <img src="/icons/surfside-pin.svg" alt="Surfside pin" />
                 </div>

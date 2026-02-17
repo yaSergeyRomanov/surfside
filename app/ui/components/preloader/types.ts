@@ -1,4 +1,4 @@
 export interface PreloaderProps {
   theme: "blue";
-  isActive?: boolean;
+  isHidden?: boolean;
 }
