@@ -2,7 +2,6 @@
 import { FreeMode, Navigation } from "swiper/modules";
 import { Swiper, SwiperSlide } from "swiper/react";
 
-import { Container } from "@/ui/components/container";
 import { Section } from "@/ui/components/section";
 import { getStrapiUrl } from "@/utils/formatting-url";
 

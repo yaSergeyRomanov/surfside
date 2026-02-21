@@ -12,11 +12,23 @@
     font-size: 40px;
   }
 
+  .container {
+    width: 100%;
+    position: absolute;
+    top: 0;
+    left: 0;
+    z-index: 1;
+  }
+
   @include tablet {
     .title {
       margin-bottom: 30px;
       width: 100%;
       text-align: initial;
+    }
+
+    .container {
+      top: -158px;
     }
   }
 
@@ -24,6 +36,16 @@
     .title {
       margin-bottom: 20px;
       font-size: 20px;
+    }
+
+    .container {
+      padding-top: 120px;
+      position: initial;
+      background: linear-gradient(
+        to bottom,
+        var(--bg-primary-2),
+        var(--accent-color-4)
+      );
     }
   }
 }
@@ -39,28 +61,6 @@
 
   @include mobile {
     margin-top: -25px;
-  }
-}
-
-.container {
-  width: 100%;
-  position: absolute;
-  top: 0;
-  left: 0;
-  z-index: 1;
-
-  @include tablet {
-    top: -158px;
-  }
-
-  @include mobile {
-    padding-top: 120px;
-    position: initial;
-    background: linear-gradient(
-      to bottom,
-      var(--bg-primary-2),
-      var(--accent-color-4)
-    );
   }
 }
 

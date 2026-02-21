@@ -62,7 +62,7 @@ export const Infrastructure = ({
     const rect = wrapperRef.current.getBoundingClientRect();
     const viewportHeight = window.innerHeight;
 
-    return rect.bottom <= viewportHeight && rect.bottom > 0;
+    return rect.bottom <= viewportHeight;
   }, []);
 
   const wasScrolledFromBottomToTop = useCallback(() => {
@@ -71,7 +71,7 @@ export const Infrastructure = ({
     const rect = wrapperRef.current.getBoundingClientRect();
     const viewportHeight = window.innerHeight;
 
-    return rect.bottom >= viewportHeight && rect.bottom > 0;
+    return rect.bottom >= viewportHeight;
   }, []);
 
   const startSliderAnimation = () => {
@@ -81,14 +81,14 @@ export const Infrastructure = ({
     setIsSliderInViewport(true);
     canActivateRef.current = false;
 
-    requestAnimationFrame(() => {
+    setTimeout(() => {
       if (wrapperRef.current) {
         wrapperRef.current.scrollIntoView({
           behavior: "auto",
           block: "start",
         });
       }
-    });
+    }, 100);
   };
 
   useEffect(() => {

@@ -7,7 +7,7 @@ export const pragmatica = localFont({
       weight: "400",
     },
     {
-      path: "../ui/fonts/pragmatica_extended-extra-light.ttf",
+      path: "../ui/fonts/pragmatica_extended-extra-light.woff",
       weight: "200",
     },
   ],
